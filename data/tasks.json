@@ -1,0 +1,272 @@
+[
+  {
+    "id": "t01",
+    "wordMask": "б..рег",
+    "correctWord": "берег",
+    "correctLetter": "е",
+    "options": ["а", "о", "е"],
+    "ruleType": "unstressed_vowel",
+    "hint": "Проверка: берег — берега."
+  },
+  {
+    "id": "t02",
+    "wordMask": "л..са",
+    "correctWord": "лиса",
+    "correctLetter": "и",
+    "options": ["е", "и", "о"],
+    "ruleType": "unstressed_vowel",
+    "hint": "Проверка: лиса — лисы."
+  },
+  {
+    "id": "t03",
+    "wordMask": "тр..ва",
+    "correctWord": "трава",
+    "correctLetter": "а",
+    "options": ["о", "а", "е"],
+    "ruleType": "unstressed_vowel",
+    "hint": "Проверка: трава — травы."
+  },
+  {
+    "id": "t04",
+    "wordMask": "р..ка",
+    "correctWord": "река",
+    "correctLetter": "е",
+    "options": ["е", "и", "я"],
+    "ruleType": "unstressed_vowel",
+    "hint": "Проверка: река — реки."
+  },
+  {
+    "id": "t05",
+    "wordMask": "гр..за",
+    "correctWord": "гроза",
+    "correctLetter": "о",
+    "options": ["а", "о", "у"],
+    "ruleType": "unstressed_vowel",
+    "hint": "Проверка: гроза — грозы."
+  },
+  {
+    "id": "t06",
+    "wordMask": "в..да",
+    "correctWord": "вода",
+    "correctLetter": "о",
+    "options": ["о", "а", "у"],
+    "ruleType": "unstressed_vowel",
+    "hint": "Проверка: вода — воды."
+  },
+  {
+    "id": "t07",
+    "wordMask": "сн..га",
+    "correctWord": "снега",
+    "correctLetter": "е",
+    "options": ["и", "е", "я"],
+    "ruleType": "unstressed_vowel",
+    "hint": "Проверка: снега — снег."
+  },
+  {
+    "id": "t08",
+    "wordMask": "ст..на",
+    "correctWord": "стена",
+    "correctLetter": "е",
+    "options": ["е", "и", "я"],
+    "ruleType": "unstressed_vowel",
+    "hint": "Проверка: стена — стены."
+  },
+  {
+    "id": "t09",
+    "wordMask": "м..ряк",
+    "correctWord": "моряк",
+    "correctLetter": "о",
+    "options": ["а", "о", "у"],
+    "ruleType": "unstressed_vowel",
+    "hint": "Проверка: моряк — море."
+  },
+  {
+    "id": "t10",
+    "wordMask": "п..ляна",
+    "correctWord": "поляна",
+    "correctLetter": "о",
+    "options": ["а", "о", "е"],
+    "ruleType": "unstressed_vowel",
+    "hint": "Проверка: поляна — поле."
+  },
+  {
+    "id": "t11",
+    "wordMask": "гри..",
+    "correctWord": "гриб",
+    "correctLetter": "б",
+    "options": ["п", "б", "в"],
+    "ruleType": "paired_consonant",
+    "hint": "Проверка: гриб — грибы."
+  },
+  {
+    "id": "t12",
+    "wordMask": "зу..",
+    "correctWord": "зуб",
+    "correctLetter": "б",
+    "options": ["п", "б", "в"],
+    "ruleType": "paired_consonant",
+    "hint": "Проверка: зуб — зубы."
+  },
+  {
+    "id": "t13",
+    "wordMask": "ду..",
+    "correctWord": "дуб",
+    "correctLetter": "б",
+    "options": ["п", "б", "т"],
+    "ruleType": "paired_consonant",
+    "hint": "Проверка: дуб — дубы."
+  },
+  {
+    "id": "t14",
+    "wordMask": "лу..",
+    "correctWord": "луг",
+    "correctLetter": "г",
+    "options": ["к", "г", "х"],
+    "ruleType": "paired_consonant",
+    "hint": "Проверка: луг — луга."
+  },
+  {
+    "id": "t15",
+    "wordMask": "хле..",
+    "correctWord": "хлеб",
+    "correctLetter": "б",
+    "options": ["п", "б", "ф"],
+    "ruleType": "paired_consonant",
+    "hint": "Проверка: хлеб — хлеба."
+  },
+  {
+    "id": "t16",
+    "wordMask": "са..",
+    "correctWord": "сад",
+    "correctLetter": "д",
+    "options": ["т", "д", "з"],
+    "ruleType": "paired_consonant",
+    "hint": "Проверка: сад — сады."
+  },
+  {
+    "id": "t17",
+    "wordMask": "моро..",
+    "correctWord": "мороз",
+    "correctLetter": "з",
+    "options": ["с", "з", "ж"],
+    "ruleType": "paired_consonant",
+    "hint": "Проверка: мороз — морозы."
+  },
+  {
+    "id": "t18",
+    "wordMask": "гла..",
+    "correctWord": "глаз",
+    "correctLetter": "з",
+    "options": ["с", "з", "ж"],
+    "ruleType": "paired_consonant",
+    "hint": "Проверка: глаз — глаза."
+  },
+  {
+    "id": "t19",
+    "wordMask": "ж..раф",
+    "correctWord": "жираф",
+    "correctLetter": "и",
+    "options": ["е", "и", "ы"],
+    "ruleType": "zhi_shi",
+    "hint": "ЖИ-ШИ пишем с буквой И."
+  },
+  {
+    "id": "t20",
+    "wordMask": "ш..шка",
+    "correctWord": "шишка",
+    "correctLetter": "и",
+    "options": ["е", "и", "ы"],
+    "ruleType": "zhi_shi",
+    "hint": "ЖИ-ШИ пишем с буквой И."
+  },
+  {
+    "id": "t21",
+    "wordMask": "маш..на",
+    "correctWord": "машина",
+    "correctLetter": "и",
+    "options": ["и", "ы", "е"],
+    "ruleType": "zhi_shi",
+    "hint": "ЖИ-ШИ пишем с буквой И."
+  },
+  {
+    "id": "t22",
+    "wordMask": "пруж..на",
+    "correctWord": "пружина",
+    "correctLetter": "и",
+    "options": ["и", "ы", "е"],
+    "ruleType": "zhi_shi",
+    "hint": "ЖИ-ШИ пишем с буквой И."
+  },
+  {
+    "id": "t23",
+    "wordMask": "ч..шка",
+    "correctWord": "чашка",
+    "correctLetter": "а",
+    "options": ["а", "я", "о"],
+    "ruleType": "cha_shcha",
+    "hint": "ЧА-ЩА пишем с буквой А."
+  },
+  {
+    "id": "t24",
+    "wordMask": "ч..ща",
+    "correctWord": "чаща",
+    "correctLetter": "а",
+    "options": ["я", "а", "о"],
+    "ruleType": "cha_shcha",
+    "hint": "ЧА-ЩА пишем с буквой А."
+  },
+  {
+    "id": "t25",
+    "wordMask": "рощ..",
+    "correctWord": "роща",
+    "correctLetter": "а",
+    "options": ["а", "я", "о"],
+    "ruleType": "cha_shcha",
+    "hint": "ЧА-ЩА пишем с буквой А."
+  },
+  {
+    "id": "t26",
+    "wordMask": "свеч..",
+    "correctWord": "свеча",
+    "correctLetter": "а",
+    "options": ["о", "а", "я"],
+    "ruleType": "cha_shcha",
+    "hint": "ЧА-ЩА пишем с буквой А."
+  },
+  {
+    "id": "t27",
+    "wordMask": "ч..до",
+    "correctWord": "чудо",
+    "correctLetter": "у",
+    "options": ["ю", "у", "о"],
+    "ruleType": "chu_shchu",
+    "hint": "ЧУ-ЩУ пишем с буквой У."
+  },
+  {
+    "id": "t28",
+    "wordMask": "щ..ка",
+    "correctWord": "щука",
+    "correctLetter": "у",
+    "options": ["ю", "у", "о"],
+    "ruleType": "chu_shchu",
+    "hint": "ЧУ-ЩУ пишем с буквой У."
+  },
+  {
+    "id": "t29",
+    "wordMask": "п..нал",
+    "correctWord": "пенал",
+    "correctLetter": "е",
+    "options": ["и", "е", "я"],
+    "ruleType": "dictionary",
+    "hint": "Словарное слово. Нужно запомнить."
+  },
+  {
+    "id": "t30",
+    "wordMask": "к..ртина",
+    "correctWord": "картина",
+    "correctLetter": "а",
+    "options": ["о", "а", "у"],
+    "ruleType": "dictionary",
+    "hint": "Словарное слово. Нужно запомнить."
+  }
+]
