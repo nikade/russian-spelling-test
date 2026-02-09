@@ -19,6 +19,8 @@ export function createQuizState(allTasks) {
     allTasks,
     currentIndex: 0,
     answers: [],
+    currentSelections: [],
+    currentStepIndex: 0,
     currentOutcome: null,
     isFinished: false,
   };
@@ -43,6 +45,8 @@ export function nextTask(state) {
   }
 
   state.currentIndex += 1;
+  state.currentSelections = [];
+  state.currentStepIndex = 0;
   state.currentOutcome = null;
   return state;
 }

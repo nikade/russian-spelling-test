@@ -1,54 +1,76 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-- Application is a static web app (no bundler).
+- Static web app without bundler.
 - Core files:
-  - `index.html` — entry page and Material Web CDN import.
-  - `app.js` — app bootstrap and event wiring.
-  - `styles.css` — layout, responsive styles, feedback visuals.
-- Business logic is split into modules:
-  - `js/state.js` — quiz state, transitions, random selection helpers.
-  - `js/quiz.js` — validation, answer checking, final stats.
-  - `js/render.js` — task/result rendering.
-- Data source: `data/tasks.json` (30 predefined tasks).
-- Tests: `tests/quiz.test.js`, `tests/state.test.js`.
+  - `index.html` — entry and Material Web CDN.
+  - `app.js` — bootstrap, setup flow, localStorage integration.
+  - `styles.css` — responsive UI styles.
+- Logic modules:
+  - `js/state.js` — quiz state and transitions.
+  - `js/quiz.js` — task parsing/validation, answer flow, stats.
+  - `js/render.js` — setup/task/result rendering.
+- Dictionary data:
+  - `data/dictionaries/index.json` — list of dictionary files.
+  - `data/dictionaries/*.json` — dictionary content.
+- Tests:
+  - `tests/quiz.test.js`
+  - `tests/state.test.js`
+- Reports:
+  - `report01.md`, `report02.md`, `report03.md`
 
 ## Build, Test, and Development Commands
-- `npm run dev` — starts local static server on `http://localhost:4173`.
-- `npm test` — runs Node test suite (`node --test`).
-- `node --check app.js` — quick syntax check for app entry.
-- `node --check js/render.js` — quick syntax check for rendering module.
+- `npm run dev` — local server at `http://localhost:4173`.
+- `npm test` — run Node tests.
+- `node --check app.js`
+- `node --check js/quiz.js`
+- `node --check js/render.js`
 
 ## Coding Style & Naming Conventions
-- Use 2-space indentation across JS/CSS/JSON.
-- Keep JS modules small and single-purpose (`state`, `quiz`, `render` separation).
+- 2-space indentation for JS/CSS/JSON.
+- Keep modules focused by responsibility.
 - Naming:
   - functions/variables: `camelCase`
   - constants: `UPPER_SNAKE_CASE`
-  - test files: `*.test.js`
-- Keep UI text in Russian (project requirement).
+  - tests: `*.test.js`
+- UI text remains Russian unless requirements change.
 
 ## Testing Guidelines
-- Framework: built-in Node test runner (`node:test` + `assert/strict`).
-- Mandatory coverage for logic changes:
-  - answer correctness (`Верно/Ошибка`)
-  - no repeated answer in one task
-  - next-step gating (cannot continue without answer)
-  - final result counters and percent
-- Add at least one regression test for every fixed logic bug.
+- Use `node:test` + `assert/strict`.
+- Cover:
+  - word pattern parser (`[варианты|правильная]`)
+  - step-by-step letter selection for multiple orthograms
+  - final combined validation after last step
+  - error highlighting for wrong positions in rendered word
+  - result counters and percent
+  - unlearned-first task selection
 
-## Data Content Rules
-- Every task in `data/tasks.json` must include:
-  - `id`, `wordMask`, `correctWord`, `correctLetter`, `options`, `ruleType`, `hint`
-- `wordMask` must contain exactly one `..`.
-- `options` length must be 2-4 and include `correctLetter`.
-- Allowed `ruleType` values are validated in `js/quiz.js`.
+## Dictionary Data Rules
+- Task format:
+  - `word: string`
+  - `hint: string`
+- Token syntax in `word`: `[варианты|правильная]`
+- Rules:
+  - at least one token per word
+  - variants count 2-4
+  - correct letter is one char and must be in variants
+- `id` is not used.
+- UI behavior:
+  - no `Буква N из M` label
+  - active orthogram is highlighted directly in the word
+  - final check happens only after all orthograms are selected
+
+## Local Storage Contract
+- `spellingQuiz.settings`:
+  - `selectedDictionaryFile`
+  - `selectedCount` (`10`, `25`, `50`, `100`, `all`)
+- `spellingQuiz.learnedWords`:
+  - array of learned full words (resolved correct spelling)
 
 ## Commit & Pull Request Guidelines
-- Follow Conventional Commits:
-  - `feat: ...`, `fix: ...`, `docs: ...`, `test: ...`, `style: ...`
+- Conventional Commits: `feat:`, `fix:`, `docs:`, `test:`, `style:`.
 - PR checklist:
-  - what changed and why
+  - behavior summary
   - screenshots for UI updates
-  - confirmation that `npm test` passes
-  - note any content updates in `data/tasks.json`
+  - `npm test` passes
+  - dictionary/data format changes described
