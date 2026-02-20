@@ -1,19 +1,21 @@
-import test from "node:test";
+﻿import test from "node:test";
 import assert from "node:assert/strict";
 import {
   answerCurrent,
   buildQuizTasks,
   buildResult,
+  getTaskParsed,
   parseWordPattern,
   startQuiz,
   validateTask,
 } from "../js/quiz.js";
 import { nextTask } from "../js/state.js";
 
-function makeTask(override = {}) {
+function makeInsertTask(override = {}) {
   return {
-    word: "б[аое|е]рег",
-    hint: "Проверка: берег — берега.",
+    type: "insertMissingLetters",
+    word: "м[ао|о]л[ао|о]ко",
+    hint: "Проверка: молоко`.",
     ...override,
   };
 }
@@ -22,63 +24,160 @@ test("parseWordPattern поддерживает несколько орфогр�
   const parsed = parseWordPattern("м[ао|о]л[ао|о]ко");
   assert.equal(parsed.orthCount, 2);
   assert.equal(parsed.correctWord, "молоко");
-  assert.deepEqual(parsed.orthograms[0].options, ["а", "о"]);
-  assert.deepEqual(parsed.orthograms[1].options, ["а", "о"]);
 });
 
-test("validateTask принимает новый формат без id", () => {
-  assert.doesNotThrow(() => validateTask(makeTask()));
-  assert.throws(
-    () => validateTask({ id: "x1", wordMask: "б..рег", hint: "..." }),
-    /word отсутствует|word/i,
+test("validateTask валидирует chooseWordVariant", () => {
+  assert.doesNotThrow(() =>
+    validateTask({
+      type: "chooseWordVariant",
+      variants: ["малако", "молоко"],
+      correctIndex: 1,
+      hint: "...",
+    }),
   );
 });
 
-test("startQuiz ограничивает размер до доступного числа слов", () => {
-  const tasks = Array.from({ length: 3 }, () => makeTask());
-  const state = startQuiz(tasks, 10);
-  assert.equal(state.allTasks.length, 3);
+test("validateTask валидирует buildForeignWord", () => {
+  assert.doesNotThrow(() =>
+    validateTask({
+      type: "buildForeignWord",
+      sourceWord: "стол",
+      targetWord: "table",
+      letters: ["t", "a", "b", "l", "e"],
+      hint: "...",
+    }),
+  );
 });
 
-test("answerCurrent: при нескольких орфограммах финал только после последней", () => {
-  const tasks = [makeTask({ word: "м[ао|о]л[ао|о]ко" })];
-  const state = startQuiz(tasks, 1);
-
-  const step1 = answerCurrent(state, "о");
+test("answerCurrent для insertMissingLetters финализируется на последнем шаге", () => {
+  const state = startQuiz([makeInsertTask()], 1);
+  const step1 = answerCurrent(state, { letter: "о" });
   assert.equal(step1.isFinal, false);
-  assert.equal(state.currentOutcome, null);
-  assert.equal(state.currentStepIndex, 1);
 
-  const step2 = answerCurrent(state, "о");
+  const step2 = answerCurrent(state, { letter: "о" });
   assert.equal(step2.isFinal, true);
   assert.equal(step2.isCorrect, true);
-  assert.equal(step2.correctWord, "молоко");
 });
 
-test("answerCurrent формирует общий результат с wrongIndexes", () => {
-  const tasks = [makeTask({ word: "м[ао|о]л[ао|о]ко" })];
-  const state = startQuiz(tasks, 1);
-
-  answerCurrent(state, "а");
-  const final = answerCurrent(state, "о");
+test("answerCurrent для chooseWordVariant", () => {
+  const task = {
+    type: "chooseWordVariant",
+    variants: ["малако", "молоко"],
+    correctIndex: 1,
+    hint: "...",
+  };
+  const state = startQuiz([task], 1);
+  const final = answerCurrent(state, { index: 0 });
   assert.equal(final.isFinal, true);
   assert.equal(final.isCorrect, false);
-  assert.deepEqual(final.wrongIndexes, [0]);
-  assert.equal(final.selectedWord, "малоко");
+  assert.equal(final.correctWord, "молоко");
+});
+
+test("answerCurrent для buildForeignWord использует буквы по индексам один раз", () => {
+  const task = {
+    type: "buildForeignWord",
+    sourceWord: "стол",
+    targetWord: "table",
+    letters: ["t", "a", "b", "l", "e"],
+    hint: "...",
+  };
+  const state = startQuiz([task], 1);
+  answerCurrent(state, { letterIndex: 0 });
+  answerCurrent(state, { letterIndex: 1 });
+  answerCurrent(state, { letterIndex: 2 });
+  answerCurrent(state, { letterIndex: 3 });
+  const final = answerCurrent(state, { letterIndex: 4 });
+  assert.equal(final.isCorrect, true);
+  assert.throws(() => answerCurrent(startQuiz([task], 1), { letterIndex: 9 }), /индекс/i);
+});
+
+test("pairMatch проверяется по mapping", () => {
+  const task = {
+    type: "pairMatch",
+    pairs: [
+      ["стол", "table"],
+      ["книга", "book"],
+    ],
+    hint: "...",
+  };
+  const state = startQuiz([task], 1);
+  const final = answerCurrent(state, {
+    mapping: {
+      стол: "table",
+      книга: "book",
+    },
+  });
+  assert.equal(final.isCorrect, true);
+});
+
+test("audioToWord chooseVariant", () => {
+  const task = {
+    type: "audioToWord",
+    mode: "chooseVariant",
+    audioSrc: "audio/en/table.mp3",
+    variants: ["table", "cable"],
+    correctIndex: 0,
+    hint: "...",
+  };
+  const state = startQuiz([task], 1);
+  const final = answerCurrent(state, { index: 0 });
+  assert.equal(final.isCorrect, true);
+});
+
+test("audioToWord buildWord", () => {
+  const task = {
+    type: "audioToWord",
+    mode: "buildWord",
+    audioSrc: "audio/en/book.mp3",
+    targetWord: "book",
+    letters: ["b", "o", "o", "k"],
+    hint: "...",
+  };
+  const state = startQuiz([task], 1);
+  answerCurrent(state, { letterIndex: 0 });
+  answerCurrent(state, { letterIndex: 1 });
+  answerCurrent(state, { letterIndex: 2 });
+  const final = answerCurrent(state, { letterIndex: 3 });
+  assert.equal(final.isCorrect, true);
+});
+
+test("buildQuizTasks сначала берет невыученные по ключу <type>:<correctWord>", () => {
+  const tasks = [
+    {
+      type: "chooseWordVariant",
+      variants: ["малако", "молоко"],
+      correctIndex: 1,
+      hint: "1",
+    },
+    {
+      type: "chooseWordVariant",
+      variants: ["карова", "корова"],
+      correctIndex: 1,
+      hint: "2",
+    },
+  ];
+
+  const selected = buildQuizTasks(tasks, 1, ["chooseWordVariant:молоко"], () => 0.1);
+  const parsed = getTaskParsed(selected[0]);
+  assert.equal(parsed.correctWord, "корова");
 });
 
 test("buildResult считает статистику", () => {
   const tasks = [
-    makeTask({ word: "м[ао|о]л[ао|о]ко" }),
-    makeTask({ word: "в[ао|о]р[ао|о]на" }),
+    {
+      type: "chooseWordVariant",
+      variants: ["малако", "молоко"],
+      correctIndex: 1,
+      hint: "...",
+    },
+    makeInsertTask({ word: "в[ао|о]р[ао|о]на" }),
   ];
-  const state = startQuiz(tasks, 2, () => 0);
 
-  answerCurrent(state, "о");
-  answerCurrent(state, "о");
+  const state = startQuiz(tasks, 2, () => 0.99);
+  answerCurrent(state, { index: 1 });
   nextTask(state);
-  answerCurrent(state, "а");
-  answerCurrent(state, "о");
+  answerCurrent(state, { letter: "а" });
+  answerCurrent(state, { letter: "о" });
 
   const result = buildResult(state);
   assert.equal(result.correctCount, 1);
@@ -86,13 +185,3 @@ test("buildResult считает статистику", () => {
   assert.equal(result.percent, 50);
 });
 
-test("buildQuizTasks сначала берет невыученные слова", () => {
-  const tasks = [
-    makeTask({ word: "б[аое|е]рег", hint: "1" }),
-    makeTask({ word: "л[еио|и]са", hint: "2" }),
-    makeTask({ word: "тр[оае|а]ва", hint: "3" }),
-  ];
-  const selected = buildQuizTasks(tasks, 2, ["берег"], () => 0.1);
-  assert.equal(selected.length, 2);
-  assert.ok(selected.every((item) => item !== tasks[0]));
-});

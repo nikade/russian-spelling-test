@@ -2,6 +2,7 @@ export function renderTask(container, payload) {
   const {
     task,
     parsed,
+    runtime,
     index,
     total,
     outcome,
@@ -12,22 +13,42 @@ export function renderTask(container, payload) {
 
   container.innerHTML = `
     <div class="row">
-      <h1 class="title">РўРµСЃС‚ РЅР° РїСЂР°РІРёР»СЊРЅРѕСЃС‚СЊ РЅР°РїРёСЃР°РЅРёСЏ</h1>
-      <span class="progress">Р—Р°РґР°РЅРёРµ ${index + 1} РёР· ${total}</span>
+      <h1 class="title">Тест на правильность написания</h1>
+      <span class="progress">Задание ${index + 1} из ${total}</span>
     </div>
-    <p class="word">${renderWord(parsed, currentSelections, outcome, currentStepIndex)}</p>
-    <div class="options ${outcome ? "options-hidden" : ""}" id="options"></div>
+    <section class="task-panel">
+      ${renderTaskBody(task, parsed, runtime, outcome, currentSelections, currentStepIndex)}
+    </section>
     <section class="feedback" id="feedback">
       ${renderFeedback(outcome)}
     </section>
     <div class="actions">
-      <md-filled-button id="nextBtn" ${nextEnabled ? "" : "disabled"}>Р”Р°Р»СЊС€Рµ</md-filled-button>
+      <md-filled-button id="nextBtn" ${nextEnabled ? "" : "disabled"}>Дальше</md-filled-button>
     </div>
   `;
 }
 
 export function renderSetup(container, payload) {
-  const { dictionaries, selectedDictionaryFile, selectedCount, countOptions } = payload;
+  const {
+    subjects,
+    dictionaries,
+    selectedSubjectDir,
+    selectedDictionaryFile,
+    selectedCount,
+    countOptions,
+  } = payload;
+
+  const subjectCards = subjects
+    .map((item) => {
+      const active = item.dir === selectedSubjectDir ? "setup-item-active" : "";
+      return `
+        <button class="setup-item ${active}" data-subject-dir="${escapeHtml(item.dir)}">
+          <span class="setup-item-title">${escapeHtml(item.title)}</span>
+        </button>
+      `;
+    })
+    .join("");
+
   const dictionaryCards = dictionaries
     .map((item) => {
       const active = item.file === selectedDictionaryFile ? "setup-item-active" : "";
@@ -37,7 +58,7 @@ export function renderSetup(container, payload) {
       return `
         <button class="setup-item ${active}" data-dictionary-file="${escapeHtml(item.file)}">
           <span class="setup-item-title">${escapeHtml(item.title)}</span>
-          <span class="setup-item-meta">${item.taskCount} СЃР»РѕРІ</span>
+          <span class="setup-item-meta">${item.taskCount} заданий</span>
           ${subtitle}
         </button>
       `;
@@ -57,29 +78,24 @@ export function renderSetup(container, payload) {
 
   container.innerHTML = `
     <div class="row">
-      <h1 class="title">РўРµСЃС‚ РЅР° РїСЂР°РІРёР»СЊРЅРѕСЃС‚СЊ РЅР°РїРёСЃР°РЅРёСЏ</h1>
+      <h1 class="title">Тест на правильность написания</h1>
     </div>
     <section class="setup-block">
-      <h2 class="setup-title">Р’С‹Р±РµСЂРёС‚Рµ СЃР»РѕРІР°СЂСЊ</h2>
-      <div class="setup-list">${dictionaryCards}</div>
+      <h2 class="setup-title">Предмет</h2>
+      <div class="setup-list setup-subject-list">${subjectCards}</div>
     </section>
     <section class="setup-block">
-      <h2 class="setup-title">РљРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РґР°РЅРёР№</h2>
+      <h2 class="setup-title">Словарь</h2>
+      <div class="setup-list setup-dictionary-list">${dictionaryCards}</div>
+    </section>
+    <section class="setup-block">
+      <h2 class="setup-title">Количество заданий</h2>
       <div class="setup-chips">${countButtons}</div>
     </section>
     <div class="actions">
-      <md-filled-button id="startBtn">РќР°С‡Р°С‚СЊ</md-filled-button>
+      <md-filled-button id="startBtn">Начать</md-filled-button>
     </div>
   `;
-}
-
-export function fillOptionButtons(optionsNode, options) {
-  optionsNode.innerHTML = options
-    .map(
-      (letter) =>
-        `<md-outlined-button class="option-btn" data-letter="${letter}"><span class="option-letter">${letter}</span></md-outlined-button>`,
-    )
-    .join("");
 }
 
 export function renderResult(container, result) {
@@ -87,7 +103,7 @@ export function renderResult(container, result) {
     .map(
       (item) => `
         <li>
-          ${escapeHtml(item.selectedWord)} -> ${escapeHtml(item.correctWord)}. ${escapeHtml(item.hint)}
+          ${escapeHtml(item.selectedWord)} -> ${escapeHtml(item.correctWord)}. ${formatHint(item.hint)}
         </li>
       `,
     )
@@ -95,28 +111,126 @@ export function renderResult(container, result) {
 
   container.innerHTML = `
     <div class="row">
-      <h1 class="title">РўРµСЃС‚ Р·Р°РІРµСЂС€РµРЅ</h1>
+      <h1 class="title">Тест завершен</h1>
     </div>
     <section class="feedback">
-      <p><strong>РЎР»РѕРІР°СЂСЊ:</strong> ${escapeHtml(result.dictionaryTitle)}</p>
-      <p><strong>Р’РµСЂРЅС‹С…:</strong> ${result.correctCount}</p>
-      <p><strong>РћС€РёР±РѕРє:</strong> ${result.wrongCount}</p>
-      <p><strong>РџСЂРѕС†РµРЅС‚:</strong> ${result.percent}%</p>
-      <p><strong>РЎР»РѕРІР° СЃ РѕС€РёР±РєР°РјРё:</strong></p>
-      ${items ? `<ul class="result-list">${items}</ul>` : "<p>РћС€РёР±РѕРє РЅРµС‚. РћС‚Р»РёС‡РЅС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚.</p>"}
+      <p><strong>Предмет:</strong> ${escapeHtml(result.subjectTitle)}</p>
+      <p><strong>Словарь:</strong> ${escapeHtml(result.dictionaryTitle)}</p>
+      <p><strong>Верных:</strong> ${result.correctCount}</p>
+      <p><strong>Ошибок:</strong> ${result.wrongCount}</p>
+      <p><strong>Процент:</strong> ${result.percent}%</p>
+      <p><strong>Задания с ошибками:</strong></p>
+      ${items ? `<ul class="result-list">${items}</ul>` : "<p>Ошибок нет. Отличный результат.</p>"}
     </section>
     <div class="actions actions-duo">
-      <md-outlined-button id="changeDictionaryBtn">РЎРјРµРЅРёС‚СЊ СЃР»РѕРІР°СЂСЊ</md-outlined-button>
-      <md-filled-button id="restartBtn">РџСЂРѕР№С‚Рё РµС‰Рµ СЂР°Р·</md-filled-button>
+      <md-outlined-button id="changeDictionaryBtn">Изменить настройки</md-outlined-button>
+      <md-filled-button id="restartBtn">Пройти еще раз</md-filled-button>
     </div>
   `;
+}
+
+function renderTaskBody(task, parsed, runtime, outcome, currentSelections, currentStepIndex) {
+  switch (task.type) {
+    case "insertMissingLetters":
+      return renderInsertMissingLetters(parsed, outcome, currentSelections, currentStepIndex);
+    case "chooseWordVariant":
+      return renderChooseVariant(parsed, task.prompt, outcome);
+    case "buildForeignWord":
+      return renderBuildWord(parsed, task.prompt, outcome, currentSelections);
+    case "pairMatch":
+      return renderPairMatch(parsed, runtime, task.prompt, outcome);
+    case "audioToWord":
+      return renderAudioToWord(task, parsed, outcome, currentSelections);
+    default:
+      return "<p class='error'>Неизвестный тип задания.</p>";
+  }
+}
+
+function renderInsertMissingLetters(parsed, outcome, currentSelections, currentStepIndex) {
+  const options = outcome ? "" : renderOptions(parsed.orthograms[currentStepIndex].options);
+  return `
+    <p class="word">${renderWord(parsed, currentSelections, outcome, currentStepIndex)}</p>
+    <div class="options ${outcome ? "options-hidden" : ""}" id="options">${options}</div>
+  `;
+}
+
+function renderChooseVariant(parsed, prompt, outcome) {
+  const options = parsed.variants
+    .map(
+      (variant, index) =>
+        `<md-outlined-button class="option-btn" data-answer-index="${index}">${escapeHtml(variant)}</md-outlined-button>`,
+    )
+    .join("");
+
+  return `
+    <p class="task-prompt">${escapeHtml(prompt ?? "Выбери правильное слово")}</p>
+    <div class="options ${outcome ? "options-hidden" : ""}" id="options">${options}</div>
+  `;
+}
+
+function renderBuildWord(parsed, prompt, outcome, selections) {
+  const selectedWord = selections.map((index) => parsed.letters[index]).join("");
+  const letterButtons = parsed.letters
+    .map((letter, index) => {
+      const used = selections.includes(index);
+      return `<md-outlined-button class="option-btn" data-letter-index="${index}" ${used || outcome ? "disabled" : ""}>${escapeHtml(letter)}</md-outlined-button>`;
+    })
+    .join("");
+
+  return `
+    <p class="task-prompt">${escapeHtml(prompt ?? "Собери слово")}</p>
+    ${parsed.sourceWord ? `<p class="word">${escapeHtml(parsed.sourceWord)}</p>` : ""}
+    <p class="word">${escapeHtml(selectedWord || "…")}</p>
+    <div class="options" id="options">${letterButtons}</div>
+  `;
+}
+
+function renderPairMatch(parsed, runtime, prompt, outcome) {
+  const rightOptions = runtime.right
+    .map((item) => `<option value="${escapeHtml(item)}">${escapeHtml(item)}</option>`)
+    .join("");
+
+  const rows = runtime.left
+    .map(
+      (left) => `
+      <div class="pair-row">
+        <span class="pair-left">${escapeHtml(left)}</span>
+        <select class="pair-select" data-left="${escapeHtml(left)}" ${outcome ? "disabled" : ""}>
+          <option value="">Выбери</option>
+          ${rightOptions}
+        </select>
+      </div>
+    `,
+    )
+    .join("");
+
+  return `
+    <p class="task-prompt">${escapeHtml(prompt ?? "Сопоставь пары")}</p>
+    <div class="pair-grid" id="pairGrid">${rows}</div>
+    ${outcome ? "" : "<div class='actions'><md-outlined-button id='pairCheckBtn'>Проверить</md-outlined-button></div>"}
+  `;
+}
+
+function renderAudioToWord(task, parsed, outcome, selections) {
+  const player = `
+    <div class="audio-wrap">
+      <p class="task-prompt">${escapeHtml(task.prompt ?? "Прослушай задание")}</p>
+      <audio controls src="${escapeHtml(task.audioSrc)}"></audio>
+    </div>
+  `;
+
+  if (parsed.mode === "chooseVariant") {
+    return `${player}${renderChooseVariant(parsed, "Выбери слово", outcome)}`;
+  }
+
+  return `${player}${renderBuildWord(parsed, "Собери слово", outcome, selections)}`;
 }
 
 function renderFeedback(outcome) {
   if (!outcome) {
     return `
       <div class="feedback-neutral">
-        <p>Р’С‹Р±РµСЂРёС‚Рµ Р±СѓРєРІСѓ РґР»СЏ С‚РµРєСѓС‰РµР№ РѕСЂС„РѕРіСЂР°РјРјС‹.</p>
+        <p>Выполните задание и нажмите «Дальше».</p>
       </div>
     `;
   }
@@ -124,32 +238,19 @@ function renderFeedback(outcome) {
   if (outcome.isCorrect) {
     return `
       <div class="feedback-state feedback-success">
-        <p class="feedback-title ok">Р’РµСЂРЅРѕ</p>
-        <p>РћС‚Р»РёС‡РЅРѕ, РІСЃРµ Р±СѓРєРІС‹ РІС‹Р±СЂР°РЅС‹ РїСЂР°РІРёР»СЊРЅРѕ.</p>
+        <p class="feedback-title ok">Верно</p>
       </div>
     `;
   }
 
   return `
     <div class="feedback-state feedback-error">
-      <p class="feedback-title error">РћС€РёР±РєР°</p>
-      <p>${escapeHtml(outcome.hint)}</p>
-      <p class="correct-word-label">РџСЂР°РІРёР»СЊРЅРѕРµ СЃР»РѕРІРѕ:</p>
-      <p class="correct-word">${renderCorrectWord(outcome)}</p>
+      <p class="feedback-title error">Ошибка</p>
+      <p>${formatHint(outcome.hint)}</p>
+      <p class="correct-word-label">Правильный ответ:</p>
+      <p class="correct-word">${escapeHtml(outcome.correctWord)}</p>
     </div>
   `;
-}
-
-function renderCorrectWord(outcome) {
-  const correctChars = Array.from(outcome.correctWord);
-  const selectedChars = Array.from(outcome.selectedWord ?? "");
-  return correctChars
-    .map((letter, index) =>
-      selectedChars[index] === letter
-        ? escapeHtml(letter)
-        : `<span class="orthogram">${escapeHtml(letter)}</span>`,
-    )
-    .join("");
 }
 
 function renderWord(parsed, currentSelections, outcome, currentStepIndex) {
@@ -161,7 +262,7 @@ function renderWord(parsed, currentSelections, outcome, currentStepIndex) {
 
       const index = segment.orthIndex;
       const selected = currentSelections[index];
-      const letter = selected ?? "вЂ¦";
+      const letter = selected ?? "…";
 
       if (!outcome) {
         if (selected) {
@@ -183,9 +284,28 @@ function renderWord(parsed, currentSelections, outcome, currentStepIndex) {
     .join("");
 }
 
+function renderOptions(options) {
+  return options
+    .map(
+      (letter) =>
+        `<md-outlined-button class="option-btn" data-letter="${letter}"><span class="option-letter">${letter}</span></md-outlined-button>`,
+    )
+    .join("");
+}
+
+function formatHint(text) {
+  let out = escapeHtml(String(text));
+  out = out.replace(/([А-Яа-яЁёAEIOUYaeiouy])`/g, "$1\u0301");
+  out = out.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+  out = out.replace(/__(.+?)__/g, "<u>$1</u>");
+  out = out.replace(/\n/g, "<br>");
+  return out;
+}
+
 function escapeHtml(text) {
   return String(text)
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;");
 }
+

@@ -1,0 +1,24 @@
+﻿{
+  "title": "Сборка слов",
+  "description": "Собери слово на английском",
+  "tasks": [
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "стол",
+      "targetWord": "table",
+      "letters": ["t", "a", "b", "l", "e", "d", "p"],
+      "hint": "**table** — это __стол__."
+    },
+    {
+      "type": "pairMatch",
+      "prompt": "Сопоставь перевод",
+      "pairs": [
+        ["книга", "book"],
+        ["собака", "dog"],
+        ["стол", "table"]
+      ],
+      "hint": "Сверь пары переводов."
+    }
+  ]
+}

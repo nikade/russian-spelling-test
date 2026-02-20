@@ -1,0 +1,24 @@
+﻿{
+  "title": "Аудирование",
+  "description": "Выбор и сборка слова по аудио",
+  "tasks": [
+    {
+      "type": "audioToWord",
+      "mode": "chooseVariant",
+      "prompt": "Прослушай и выбери слово",
+      "audioSrc": "audio/en/table.mp3",
+      "variants": ["table", "cable", "stable", "tablet"],
+      "correctIndex": 0,
+      "hint": "Правильный ответ: **table**."
+    },
+    {
+      "type": "audioToWord",
+      "mode": "buildWord",
+      "prompt": "Прослушай и собери слово",
+      "audioSrc": "audio/en/book.mp3",
+      "targetWord": "book",
+      "letters": ["b", "o", "o", "k", "a", "p"],
+      "hint": "Правильный ответ: **book**."
+    }
+  ]
+}

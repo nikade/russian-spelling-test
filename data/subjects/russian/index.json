@@ -1,0 +1,4 @@
+﻿[
+  { "title": "Орфография", "file": "spelling.json" },
+  { "title": "Выбор слова", "file": "word-variants.json" }
+]
