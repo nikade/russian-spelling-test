@@ -3,14 +3,17 @@
   "description": "Только словарные слова для запоминания",
   "tasks": [
     {
+      "type": "insertMissingLetters",
       "word": "п[иея|е]нал",
       "hint": "Словарное слово. Нужно запомнить."
     },
     {
+      "type": "insertMissingLetters",
       "word": "к[оау|а]ртина",
       "hint": "Словарное слово. Нужно запомнить."
     },
     {
+      "type": "insertMissingLetters",
       "word": "м[оа|о]л[оа|о]ко",
       "hint": "Словарное слово. Нужно запомнить."
     }

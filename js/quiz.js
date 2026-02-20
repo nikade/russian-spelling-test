@@ -96,13 +96,19 @@ export function parseWordPattern(word) {
     const correct = correctRaw.trim();
 
     if (options.length < 2 || options.length > 4) {
-      throw new Error("Количество вариантов в орфограмме должно быть от 2 до 4.");
+      throw new Error(
+        `Количество вариантов в орфограмме должно быть от 2 до 4 (текущих: ${options.length}). Слово: "${word}"`,
+      );
     }
     if (Array.from(correct).length !== 1) {
-      throw new Error("Правильная буква должна быть одной буквой.");
+      throw new Error(
+        `Правильная буква "${correct}" должна быть одной буквой. Слово: "${word}"`,
+      );
     }
     if (!options.includes(correct)) {
-      throw new Error("Правильная буква должна входить в варианты.");
+      throw new Error(
+        `Правильная буква "${correct}" не входит в варианты [${options.join("")}]. Слово: "${word}"`,
+      );
     }
 
     const orthIndex = orthograms.length;

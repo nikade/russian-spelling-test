@@ -1,33 +1,3 @@
-export function renderTask(container, payload) {
-  const {
-    task,
-    parsed,
-    runtime,
-    index,
-    total,
-    outcome,
-    nextEnabled,
-    currentSelections,
-    currentStepIndex,
-  } = payload;
-
-  container.innerHTML = `
-    <div class="row">
-      <h1 class="title">Тест на правильность написания</h1>
-      <span class="progress">Задание ${index + 1} из ${total}</span>
-    </div>
-    <section class="task-panel">
-      ${renderTaskBody(task, parsed, runtime, outcome, currentSelections, currentStepIndex)}
-    </section>
-    <section class="feedback" id="feedback">
-      ${renderFeedback(outcome)}
-    </section>
-    <div class="actions">
-      <md-filled-button id="nextBtn" ${nextEnabled ? "" : "disabled"}>Дальше</md-filled-button>
-    </div>
-  `;
-}
-
 export function renderSetup(container, payload) {
   const {
     subjects,
@@ -58,7 +28,7 @@ export function renderSetup(container, payload) {
       return `
         <button class="setup-item ${active}" data-dictionary-file="${escapeHtml(item.file)}">
           <span class="setup-item-title">${escapeHtml(item.title)}</span>
-          <span class="setup-item-meta">${item.taskCount} заданий</span>
+          <span class="setup-item-meta">${item.taskCount} Р·Р°РґР°РЅРёР№</span>
           ${subtitle}
         </button>
       `;
@@ -78,22 +48,52 @@ export function renderSetup(container, payload) {
 
   container.innerHTML = `
     <div class="row">
-      <h1 class="title">Тест на правильность написания</h1>
+      <h1 class="title">РўРµСЃС‚ РЅР° РїСЂР°РІРёР»СЊРЅРѕСЃС‚СЊ РЅР°РїРёСЃР°РЅРёСЏ</h1>
     </div>
     <section class="setup-block">
-      <h2 class="setup-title">Предмет</h2>
+      <h2 class="setup-title">РџСЂРµРґРјРµС‚</h2>
       <div class="setup-list setup-subject-list">${subjectCards}</div>
     </section>
     <section class="setup-block">
-      <h2 class="setup-title">Словарь</h2>
+      <h2 class="setup-title">РЎР»РѕРІР°СЂСЊ</h2>
       <div class="setup-list setup-dictionary-list">${dictionaryCards}</div>
     </section>
     <section class="setup-block">
-      <h2 class="setup-title">Количество заданий</h2>
+      <h2 class="setup-title">РљРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РґР°РЅРёР№</h2>
       <div class="setup-chips">${countButtons}</div>
     </section>
     <div class="actions">
-      <md-filled-button id="startBtn">Начать</md-filled-button>
+      <md-filled-button id="startBtn">РќР°С‡Р°С‚СЊ</md-filled-button>
+    </div>
+  `;
+}
+
+export function renderTask(container, payload) {
+  const {
+    task,
+    parsed,
+    runtime,
+    index,
+    total,
+    outcome,
+    nextEnabled,
+    currentSelections,
+    currentStepIndex,
+  } = payload;
+
+  container.innerHTML = `
+    <div class="row">
+      <h1 class="title">РўРµСЃС‚ РЅР° РїСЂР°РІРёР»СЊРЅРѕСЃС‚СЊ РЅР°РїРёСЃР°РЅРёСЏ</h1>
+      <span class="progress">Р—Р°РґР°РЅРёРµ ${index + 1} РёР· ${total}</span>
+    </div>
+    <section class="task-panel">
+      ${renderTaskBody(task, parsed, runtime, outcome, currentSelections, currentStepIndex)}
+    </section>
+    <section class="feedback" id="feedback">
+      ${renderFeedback(outcome)}
+    </section>
+    <div class="actions">
+      <md-filled-button id="nextBtn" ${nextEnabled ? "" : "disabled"}>Р”Р°Р»СЊС€Рµ</md-filled-button>
     </div>
   `;
 }
@@ -103,7 +103,7 @@ export function renderResult(container, result) {
     .map(
       (item) => `
         <li>
-          ${escapeHtml(item.selectedWord)} -> ${escapeHtml(item.correctWord)}. ${formatHint(item.hint)}
+          ${item.wordMask}: РІС‹Р±СЂР°РЅРѕ В«${item.selectedLetter}В», РїСЂР°РІРёР»СЊРЅРѕ В«${item.correctLetter}В». ${item.hint}
         </li>
       `,
     )
@@ -111,20 +111,21 @@ export function renderResult(container, result) {
 
   container.innerHTML = `
     <div class="row">
-      <h1 class="title">Тест завершен</h1>
+      <h1 class="title">РўРµСЃС‚ Р·Р°РІРµСЂС€РµРЅ</h1>
     </div>
     <section class="feedback">
-      <p><strong>Предмет:</strong> ${escapeHtml(result.subjectTitle)}</p>
-      <p><strong>Словарь:</strong> ${escapeHtml(result.dictionaryTitle)}</p>
-      <p><strong>Верных:</strong> ${result.correctCount}</p>
-      <p><strong>Ошибок:</strong> ${result.wrongCount}</p>
-      <p><strong>Процент:</strong> ${result.percent}%</p>
-      <p><strong>Задания с ошибками:</strong></p>
-      ${items ? `<ul class="result-list">${items}</ul>` : "<p>Ошибок нет. Отличный результат.</p>"}
+      <p><strong>Р’РµСЂРЅС‹С…:</strong> ${result.correctCount}</p>
+      <p><strong>РћС€РёР±РѕРє:</strong> ${result.wrongCount}</p>
+      <p><strong>РџСЂРѕС†РµРЅС‚:</strong> ${result.percent}%</p>
+      <p><strong>РЎР»РѕРІР° СЃ РѕС€РёР±РєР°РјРё:</strong></p>
+      ${
+        items
+          ? `<ul class="result-list">${items}</ul>`
+          : "<p>РћС€РёР±РѕРє РЅРµС‚. РћС‚Р»РёС‡РЅС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚!</p>"
+      }
     </section>
-    <div class="actions actions-duo">
-      <md-outlined-button id="changeDictionaryBtn">Изменить настройки</md-outlined-button>
-      <md-filled-button id="restartBtn">Пройти еще раз</md-filled-button>
+    <div class="actions">
+      <md-filled-button id="restartBtn">РџСЂРѕР№С‚Рё РµС‰С‘ СЂР°Р·</md-filled-button>
     </div>
   `;
 }
@@ -132,160 +133,182 @@ export function renderResult(container, result) {
 function renderTaskBody(task, parsed, runtime, outcome, currentSelections, currentStepIndex) {
   switch (task.type) {
     case "insertMissingLetters":
-      return renderInsertMissingLetters(parsed, outcome, currentSelections, currentStepIndex);
+      return renderOrthogramTask(task, parsed, outcome, currentSelections, currentStepIndex);
     case "chooseWordVariant":
-      return renderChooseVariant(parsed, task.prompt, outcome);
+      return renderChooseVariantTask(task, parsed, outcome);
     case "buildForeignWord":
-      return renderBuildWord(parsed, task.prompt, outcome, currentSelections);
-    case "pairMatch":
-      return renderPairMatch(parsed, runtime, task.prompt, outcome);
     case "audioToWord":
-      return renderAudioToWord(task, parsed, outcome, currentSelections);
+      return renderBuildWordTask(task, parsed, outcome, currentSelections);
+    case "pairMatch":
+      return renderPairMatchTask(task, runtime, outcome);
     default:
-      return "<p class='error'>Неизвестный тип задания.</p>";
+      return `<p class="error">РќРµРёР·РІРµСЃС‚РЅС‹Р№ С‚РёРї Р·Р°РґР°РЅРёСЏ.</p>`;
   }
 }
 
-function renderInsertMissingLetters(parsed, outcome, currentSelections, currentStepIndex) {
-  const options = outcome ? "" : renderOptions(parsed.orthograms[currentStepIndex].options);
-  return `
-    <p class="word">${renderWord(parsed, currentSelections, outcome, currentStepIndex)}</p>
-    <div class="options ${outcome ? "options-hidden" : ""}" id="options">${options}</div>
-  `;
-}
+function renderOrthogramTask(task, parsed, outcome, currentSelections, currentStepIndex) {
+  const promptHtml = task.prompt ? `<p class="task-prompt">${escapeHtml(task.prompt)}</p>` : "";
 
-function renderChooseVariant(parsed, prompt, outcome) {
-  const options = parsed.variants
-    .map(
-      (variant, index) =>
-        `<md-outlined-button class="option-btn" data-answer-index="${index}">${escapeHtml(variant)}</md-outlined-button>`,
-    )
-    .join("");
+  if (parsed.orthograms.length === 1) {
+    // One orthogram - simple selection
+    const orth = parsed.orthograms[0];
+    const segments = parsed.segments.map((seg) => {
+      if (seg.type === "text") return seg.value;
+      const currentLetter = currentSelections?.[seg.orthIndex];
+      const selected = outcome ? outcome.selectedLetters?.[seg.orthIndex] : currentLetter;
+      const cssClass = selected
+        ? selected === orth.correct
+          ? "word-gap word-gap-active"
+          : "word-gap"
+        : "word-gap";
 
-  return `
-    <p class="task-prompt">${escapeHtml(prompt ?? "Выбери правильное слово")}</p>
-    <div class="options ${outcome ? "options-hidden" : ""}" id="options">${options}</div>
-  `;
-}
+      const letter = selected ?? "..";
+      return `<span class="${cssClass}">${letter}</span>`;
+    });
 
-function renderBuildWord(parsed, prompt, outcome, selections) {
-  const selectedWord = selections.map((index) => parsed.letters[index]).join("");
-  const letterButtons = parsed.letters
-    .map((letter, index) => {
-      const used = selections.includes(index);
-      return `<md-outlined-button class="option-btn" data-letter-index="${index}" ${used || outcome ? "disabled" : ""}>${escapeHtml(letter)}</md-outlined-button>`;
-    })
-    .join("");
+    const optionsHtml = outcome
+      ? ""
+      : `<div class="options">
+        ${orth.options
+          .map(
+            (opt) =>
+              `<md-outlined-button class="option-btn" data-letter="${opt}">
+                <span class="option-letter">${opt}</span>
+              </md-outlined-button>`,
+          )
+          .join("")}
+      </div>`;
 
-  return `
-    <p class="task-prompt">${escapeHtml(prompt ?? "Собери слово")}</p>
-    ${parsed.sourceWord ? `<p class="word">${escapeHtml(parsed.sourceWord)}</p>` : ""}
-    <p class="word">${escapeHtml(selectedWord || "…")}</p>
-    <div class="options" id="options">${letterButtons}</div>
-  `;
-}
-
-function renderPairMatch(parsed, runtime, prompt, outcome) {
-  const rightOptions = runtime.right
-    .map((item) => `<option value="${escapeHtml(item)}">${escapeHtml(item)}</option>`)
-    .join("");
-
-  const rows = runtime.left
-    .map(
-      (left) => `
-      <div class="pair-row">
-        <span class="pair-left">${escapeHtml(left)}</span>
-        <select class="pair-select" data-left="${escapeHtml(left)}" ${outcome ? "disabled" : ""}>
-          <option value="">Выбери</option>
-          ${rightOptions}
-        </select>
-      </div>
-    `,
-    )
-    .join("");
-
-  return `
-    <p class="task-prompt">${escapeHtml(prompt ?? "Сопоставь пары")}</p>
-    <div class="pair-grid" id="pairGrid">${rows}</div>
-    ${outcome ? "" : "<div class='actions'><md-outlined-button id='pairCheckBtn'>Проверить</md-outlined-button></div>"}
-  `;
-}
-
-function renderAudioToWord(task, parsed, outcome, selections) {
-  const player = `
-    <div class="audio-wrap">
-      <p class="task-prompt">${escapeHtml(task.prompt ?? "Прослушай задание")}</p>
-      <audio controls src="${escapeHtml(task.audioSrc)}"></audio>
-    </div>
-  `;
-
-  if (parsed.mode === "chooseVariant") {
-    return `${player}${renderChooseVariant(parsed, "Выбери слово", outcome)}`;
-  }
-
-  return `${player}${renderBuildWord(parsed, "Собери слово", outcome, selections)}`;
-}
-
-function renderFeedback(outcome) {
-  if (!outcome) {
     return `
-      <div class="feedback-neutral">
-        <p>Выполните задание и нажмите «Дальше».</p>
-      </div>
+      ${promptHtml}
+      <p class="word">${segments.join("")}</p>
+      ${optionsHtml}
+    `;
+  } else {
+    // Multiple orthograms - step-by-step
+    const currentStep = outcome ? parsed.orthograms.length : (currentStepIndex ?? 0);
+    const orth = parsed.orthograms[currentStep];
+    const selectedLetter = currentSelections?.[currentStep];
+
+    const segments = parsed.segments.map((seg, idx) => {
+      if (seg.type === "text") return seg.value;
+
+      const isCurrent = seg.orthIndex === currentStep;
+      const isPast = seg.orthIndex < currentStep;
+
+      if (isPast || outcome) {
+        const letter = outcome ? outcome.selectedLetters[seg.orthIndex] : currentSelections[seg.orthIndex];
+        const correct = parsed.orthograms[seg.orthIndex].correct;
+        const cssClass = letter === correct ? "word-gap" : "word-gap word-wrong-letter";
+        return `<span class="${cssClass}">${letter}</span>`;
+      } else if (isCurrent) {
+        return `<span class="word-gap word-gap-active">${selectedLetter ?? ".."}</span>`;
+      } else {
+        return `<span class="word-gap">..</span>`;
+      }
+    });
+
+    const optionsHtml = outcome
+      ? ""
+      : `<div class="options">
+        ${orth.options
+          .map(
+            (opt, idx) =>
+              `<md-outlined-button class="option-btn" data-letter-index="${idx}">
+                <span class="option-letter">${opt}</span>
+              </md-outlined-button>`,
+          )
+          .join("")}
+      </div>`;
+
+    return `
+      ${promptHtml}
+      <p class="word">${segments.join("")}</p>
+      ${optionsHtml}
     `;
   }
+}
 
-  if (outcome.isCorrect) {
-    return `
-      <div class="feedback-state feedback-success">
-        <p class="feedback-title ok">Верно</p>
-      </div>
-    `;
-  }
+function renderChooseVariantTask(task, parsed, outcome) {
+  const promptHtml = task.prompt ? `<p class="task-prompt">${escapeHtml(task.prompt)}</p>` : "";
+
+  const variantsHtml = outcome
+    ? ""
+    : `<div class="options">
+      ${parsed.variants.map(
+        (variant, idx) =>
+          `<md-outlined-button class="option-btn" data-answer-index="${idx}">
+            <span class="option-letter">${variant}</span>
+          </md-outlined-button>`,
+      ).join("")}
+    </div>`;
 
   return `
-    <div class="feedback-state feedback-error">
-      <p class="feedback-title error">Ошибка</p>
-      <p>${formatHint(outcome.hint)}</p>
-      <p class="correct-word-label">Правильный ответ:</p>
-      <p class="correct-word">${escapeHtml(outcome.correctWord)}</p>
-    </div>
+    ${promptHtml}
+    ${variantsHtml}
   `;
 }
 
-function renderWord(parsed, currentSelections, outcome, currentStepIndex) {
-  return parsed.segments
-    .map((segment) => {
-      if (segment.type === "text") {
-        return escapeHtml(segment.value);
-      }
+function renderBuildWordTask(task, parsed, outcome, currentSelections) {
+  const promptHtml = task.prompt ? `<p class="task-prompt">${escapeHtml(task.prompt)}</p>` : "";
 
-      const index = segment.orthIndex;
-      const selected = currentSelections[index];
-      const letter = selected ?? "…";
+  const currentWord = (currentSelections ?? []).join("");
 
-      if (!outcome) {
-        if (selected) {
-          return escapeHtml(letter);
-        }
-        const activeClass = index === currentStepIndex ? " word-gap-active" : "";
-        return `<span class="word-gap${activeClass}">..</span>`;
-      }
+  const wordHtml =
+    currentWord.length > 0
+      ? `<p class="word">${currentWord.split("").map((letter) =>
+          letter === " " ? "&nbsp;" : letter,
+        ).join("")}</p>`
+      : "";
 
-      if (outcome.isCorrect) {
-        return escapeHtml(letter);
-      }
+  const optionsHtml = outcome
+    ? ""
+    : `<div class="options">
+      ${parsed.shuffledLetters.map(
+        (letter, idx) =>
+          `<md-outlined-button class="option-btn" data-letter-index="${idx}">
+            <span class="option-letter">${letter}</span>
+          </md-outlined-button>`,
+      ).join("")}
+    </div>`;
 
-      if (outcome.wrongIndexes.includes(index)) {
-        return `<span class="word-wrong-letter">${escapeHtml(letter)}</span>`;
-      }
-      return escapeHtml(letter);
-    })
-    .join("");
+  return `
+    ${promptHtml}
+    ${wordHtml}
+    ${optionsHtml}
+  `;
 }
 
-function renderOptions(options) {
-  return options
+function renderPairMatchTask(task, runtime, outcome) {
+  const promptHtml = task.prompt ? `<p class="task-prompt">${escapeHtml(task.prompt)}</p>` : "";
+
+  const pairsHtml = outcome
+    ? ""
+    : `<div class="pair-grid">
+      ${runtime.left.map((left, idx) => `
+        <div class="pair-row">
+          <span class="pair-left">${escapeHtml(left)}</span>
+          <select class="pair-select" data-left="${escapeHtml(left)}">
+            <option value="">-- Р’С‹Р±РµСЂРёС‚Рµ --</option>
+            ${runtime.right.map((right) =>
+              `<option value="${escapeHtml(right)}">${escapeHtml(right)}</option>`,
+            ).join("")}
+          </select>
+        </div>
+      `).join("")}
+    </div>
+    <div class="actions">
+      <md-filled-button id="pairCheckBtn">РџСЂРѕРІРµСЂРёС‚СЊ</md-filled-button>
+    </div>`;
+
+  return `
+    ${promptHtml}
+    ${pairsHtml}
+  `;
+}
+
+export function fillOptionButtons(optionsNode, options) {
+  optionsNode.innerHTML = options
     .map(
       (letter) =>
         `<md-outlined-button class="option-btn" data-letter="${letter}"><span class="option-letter">${letter}</span></md-outlined-button>`,
@@ -293,19 +316,44 @@ function renderOptions(options) {
     .join("");
 }
 
-function formatHint(text) {
-  let out = escapeHtml(String(text));
-  out = out.replace(/([А-Яа-яЁёAEIOUYaeiouy])`/g, "$1\u0301");
-  out = out.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
-  out = out.replace(/__(.+?)__/g, "<u>$1</u>");
-  out = out.replace(/\n/g, "<br>");
-  return out;
+function renderFeedback(outcome) {
+  if (!outcome) {
+    return `<p class="feedback-neutral"></p>`;
+  }
+
+  if (outcome.isCorrect) {
+    return `
+      <div class="feedback-state feedback-success">
+        <h3 class="feedback-title">Р’РµСЂРЅРѕ!</h3>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="feedback-state feedback-error">
+      <h3 class="feedback-title">РћС€РёР±РєР°</h3>
+      ${outcome.hint ? `<p>${formatHint(outcome.hint)}</p>` : ""}
+      ${outcome.correctWord !== undefined ? `
+        <p class="correct-word-label">РџСЂР°РІРёР»СЊРЅРѕРµ РЅР°РїРёСЃР°РЅРёРµ:</p>
+        <p class="correct-word">${outcome.correctWord}</p>
+      ` : ""}
+    </div>
+  `;
 }
 
-function escapeHtml(text) {
-  return String(text)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;");
+function formatHint(hint) {
+  return hint
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/__(.+?)__/g, "<u>$1</u>")
+    .replace(/`/g, "<strong>&#769;</strong>")
+    .replace(/\n/g, "<br>");
 }
 
+function escapeHtml(str) {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}

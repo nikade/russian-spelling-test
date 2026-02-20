@@ -81,7 +81,8 @@ async function fetchJson(url, errorMessage) {
   if (!response.ok) {
     throw new Error(errorMessage);
   }
-  return response.json();
+  const text = await response.text();
+  return JSON.parse(text);
 }
 
 async function loadSubjects() {
@@ -120,7 +121,13 @@ async function loadSubjects() {
             throw new Error(`Словарь ${item.file} не содержит tasks.`);
           }
 
-          dictionary.tasks.forEach(validateTask);
+          try {
+            dictionary.tasks.forEach(validateTask);
+          } catch (error) {
+            throw new Error(
+              `Ошибка в файле "${item.file}" (предмет "${subject.title}"): ${error.message}`,
+            );
+          }
 
           return {
             file: item.file,

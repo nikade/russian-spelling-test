@@ -3,17 +3,17 @@
 ## Project Structure & Module Organization
 - Static web app without bundler.
 - Core files:
-  - `index.html` — entry and Material Web CDN.
-  - `app.js` — bootstrap, setup flow, localStorage integration.
-  - `styles.css` — responsive UI styles.
+  - `index.html` вЂ” entry and Material Web CDN.
+  - `app.js` вЂ” bootstrap, setup flow, localStorage integration.
+  - `styles.css` вЂ” responsive UI styles.
 - Logic modules:
-  - `js/state.js` — quiz state and transitions.
-  - `js/quiz.js` — task parsing/validation, answer flow, stats.
-  - `js/render.js` — setup/task/result rendering.
+  - `js/state.js` вЂ” quiz state and transitions.
+  - `js/quiz.js` вЂ” task parsing/validation, answer flow, stats.
+  - `js/render.js` вЂ” setup/task/result rendering.
 - Subject data (per subject directory):
-  - `data/subjects/index.json` — list of subjects for the setup screen.
-  - `data/subjects/<dir>/index.json` — dictionaries inside the selected subject.
-  - `data/subjects/<dir>/dictionaries/*.json` — dictionary content.
+  - `data/subjects/index.json` вЂ” list of subjects for the setup screen.
+  - `data/subjects/<dir>/index.json` вЂ” dictionaries inside the selected subject.
+  - `data/subjects/<dir>/dictionaries/*.json` вЂ” dictionary content.
 - Tests:
   - `tests/quiz.test.js`
   - `tests/state.test.js`
@@ -21,8 +21,8 @@
   - `report01.md`, `report02.md`, `report03.md`, `report04.md`
 
 ## Build, Test, and Development Commands
-- `npm run dev` — local server at `http://localhost:4173` (python http.server).
-- `npm test` — run Node tests.
+- `npm run dev` вЂ” local server at `http://localhost:4173` (python http.server).
+- `npm test` вЂ” run Node tests.
 - `node --check app.js`
 - `node --check js/quiz.js`
 - `node --check js/render.js`
@@ -39,7 +39,7 @@
 ## Testing Guidelines
 - Use `node:test` + `assert/strict`.
 - Cover:
-  - parser for `[варианты|правильная]`
+  - parser for `[РІР°СЂРёР°РЅС‚С‹|РїСЂР°РІРёР»СЊРЅР°СЏ]`
   - task validation across all `type`
   - multi-step selection for orthograms/build-word tasks
   - final validation and stats
@@ -48,16 +48,16 @@
 
 ## Dictionary Data Rules
 - Supported `type` values:
-  - `insertMissingLetters` — токены `[варианты|правильная]`, минимум 1 токен, варианты (2-4) содержат правильную букву.
-  - `chooseWordVariant` — массив `variants` (2-4 слов), `correctIndex` или `correctWord` идентифицирует ответ.
-  - `buildForeignWord` — `targetWord`, `letters[]` (массив букв, задаётся вручную, допускаются дубли, каждая буква используется не больше одного раза), опционально `sourceWord`/`prompt`.
-  - `pairMatch` — `pairs: [[left,right], ...]` с готовыми строками; значения внутри каждой стороны уникальны, перемешивание выполняется на клиенте.
-  - `audioToWord` — `audioSrc`, `mode: "chooseVariant" | "buildWord"`; в первом случае нужны `variants`, во втором `letters[]` как у `buildForeignWord`.
-- Общие поля: `type`, `hint`, опциональный `prompt`, вспомогательные данные (`word`, `variants`, `pairs`, `letters`).
-- `hint` формат: `**жирный**`, `__подчеркнутый__`, ударение символом `` ` `` после гласной, `\n` > `<br>`.
-- `id` не используется.
-- Левые буквы/доп. варианты задаются только явно в JSON (нет `allowExtraLetters`).
-- Структура каталогов: задания хранятся в `data/subjects/<subject>/dictionaries/*.json`, UI сначала выбирает предмет, затем словарь.
+  - `insertMissingLetters` вЂ” С‚РѕРєРµРЅС‹ `[РІР°СЂРёР°РЅС‚С‹|РїСЂР°РІРёР»СЊРЅР°СЏ]`, РјРёРЅРёРјСѓРј 1 С‚РѕРєРµРЅ, РІР°СЂРёР°РЅС‚С‹ (2-4) СЃРѕРґРµСЂР¶Р°С‚ РїСЂР°РІРёР»СЊРЅСѓСЋ Р±СѓРєРІСѓ.
+  - `chooseWordVariant` вЂ” РјР°СЃСЃРёРІ `variants` (2-4 СЃР»РѕРІ), `correctIndex` РёР»Рё `correctWord` РёРґРµРЅС‚РёС„РёС†РёСЂСѓРµС‚ РѕС‚РІРµС‚.
+  - `buildForeignWord` вЂ” `targetWord`, `letters[]` (РјР°СЃСЃРёРІ Р±СѓРєРІ, Р·Р°РґР°С‘С‚СЃСЏ РІСЂСѓС‡РЅСѓСЋ, РґРѕРїСѓСЃРєР°СЋС‚СЃСЏ РґСѓР±Р»Рё, РєР°Р¶РґР°СЏ Р±СѓРєРІР° РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РЅРµ Р±РѕР»СЊС€Рµ РѕРґРЅРѕРіРѕ СЂР°Р·Р°), РѕРїС†РёРѕРЅР°Р»СЊРЅРѕ `sourceWord`/`prompt`.
+  - `pairMatch` вЂ” `pairs: [[left,right], ...]` СЃ РіРѕС‚РѕРІС‹РјРё СЃС‚СЂРѕРєР°РјРё; Р·РЅР°С‡РµРЅРёСЏ РІРЅСѓС‚СЂРё РєР°Р¶РґРѕР№ СЃС‚РѕСЂРѕРЅС‹ СѓРЅРёРєР°Р»СЊРЅС‹, РїРµСЂРµРјРµС€РёРІР°РЅРёРµ РІС‹РїРѕР»РЅСЏРµС‚СЃСЏ РЅР° РєР»РёРµРЅС‚Рµ.
+  - `audioToWord` вЂ” `audioSrc`, `mode: "chooseVariant" | "buildWord"`; РІ РїРµСЂРІРѕРј СЃР»СѓС‡Р°Рµ РЅСѓР¶РЅС‹ `variants`, РІРѕ РІС‚РѕСЂРѕРј `letters[]` РєР°Рє Сѓ `buildForeignWord`.
+- РћР±С‰РёРµ РїРѕР»СЏ: `type`, `hint`, РѕРїС†РёРѕРЅР°Р»СЊРЅС‹Р№ `prompt`, РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Рµ РґР°РЅРЅС‹Рµ (`word`, `variants`, `pairs`, `letters`).
+- `hint` С„РѕСЂРјР°С‚: `**Р¶РёСЂРЅС‹Р№**`, `__РїРѕРґС‡РµСЂРєРЅСѓС‚С‹Р№__`, СѓРґР°СЂРµРЅРёРµ СЃРёРјРІРѕР»РѕРј `` ` `` РїРѕСЃР»Рµ РіР»Р°СЃРЅРѕР№, `\n` > `<br>`.
+- `id` РЅРµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ.
+- Р›РµРІС‹Рµ Р±СѓРєРІС‹/РґРѕРї. РІР°СЂРёР°РЅС‚С‹ Р·Р°РґР°СЋС‚СЃСЏ С‚РѕР»СЊРєРѕ СЏРІРЅРѕ РІ JSON (РЅРµС‚ `allowExtraLetters`).
+- РЎС‚СЂСѓРєС‚СѓСЂР° РєР°С‚Р°Р»РѕРіРѕРІ: Р·Р°РґР°РЅРёСЏ С…СЂР°РЅСЏС‚СЃСЏ РІ `data/subjects/<subject>/dictionaries/*.json`, UI СЃРЅР°С‡Р°Р»Р° РІС‹Р±РёСЂР°РµС‚ РїСЂРµРґРјРµС‚, Р·Р°С‚РµРј СЃР»РѕРІР°СЂСЊ.
 
 ## Local Storage Contract
 - `spellingQuiz.settings`:
@@ -65,7 +65,7 @@
   - `selectedDictionaryFile`
   - `selectedCount` (`10`, `25`, `50`, `100`, `all`)
 - `spellingQuiz.learnedWords`:
-  - массив ключей `<type>:<correctWord>`
+  - РјР°СЃСЃРёРІ РєР»СЋС‡РµР№ `<type>:<correctWord>`
 
 ## Commit & Pull Request Guidelines
 - Conventional Commits: `feat:`, `fix:`, `docs:`, `test:`, `style:`.
@@ -74,4 +74,4 @@
   - screenshots for UI updates
   - `npm test` passes
   - dictionary/data format changes described
-- Не добавлять локальные скриншоты (например, `screen*.png`), если явно не просили.
+- РќРµ РґРѕР±Р°РІР»СЏС‚СЊ Р»РѕРєР°Р»СЊРЅС‹Рµ СЃРєСЂРёРЅС€РѕС‚С‹ (РЅР°РїСЂРёРјРµСЂ, `screen*.png`), РµСЃР»Рё СЏРІРЅРѕ РЅРµ РїСЂРѕСЃРёР»Рё.
