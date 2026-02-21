@@ -1,4 +1,5 @@
 ﻿[
   { "title": "Русский язык", "dir": "russian" },
-  { "title": "Английский язык", "dir": "english" }
+  { "title": "Английский язык", "dir": "english" },
+  { "title": "Математика", "dir": "math" }
 ]

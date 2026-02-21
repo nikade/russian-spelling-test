@@ -15,7 +15,7 @@
       "type": "audioToWord",
       "mode": "buildWord",
       "prompt": "Прослушай и собери слово",
-      "audioSrc": "audio/en/book.mp3",
+      "audioSrc": "audio/en/book.ogg",
       "targetWord": "book",
       "letters": ["b", "o", "o", "k", "a", "p"],
       "hint": "Правильный ответ: **book**."
