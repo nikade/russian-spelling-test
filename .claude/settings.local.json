@@ -9,7 +9,11 @@
       "Bash(file:*)",
       "Bash(iconv:*)",
       "Bash(cat:*)",
-      "mcp__chrome-devtools__new_page"
+      "Bash(where:*)",
+      "Bash(start:*)",
+      "Bash(start http://localhost:4173)",
+      "mcp__chrome-devtools__list_pages",
+      "mcp__chrome-devtools__navigate_page"
     ],
     "defaultMode": "default"
   }

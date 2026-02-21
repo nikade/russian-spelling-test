@@ -302,6 +302,16 @@ function getPairRuntime(task, parsed, randomFn = Math.random) {
   return task.__pairRuntime;
 }
 
+function getBuildWordRuntime(task, parsed, randomFn = Math.random) {
+  if (task.__buildWordRuntime) {
+    return task.__buildWordRuntime;
+  }
+
+  const shuffledLetters = shuffleArray(parsed.letters, randomFn);
+  task.__buildWordRuntime = { shuffledLetters };
+  return task.__buildWordRuntime;
+}
+
 export function validateTask(task) {
   ensureHint(task);
   getTaskModel(task);
@@ -316,6 +326,9 @@ export function getTaskRuntime(task, randomFn = Math.random) {
   const parsed = getTaskModel(task);
   if (parsed.taskType === "pairMatch") {
     return getPairRuntime(task, parsed, randomFn);
+  }
+  if (parsed.taskType === "buildForeignWord" || (parsed.taskType === "audioToWord" && parsed.mode === "buildWord")) {
+    return getBuildWordRuntime(task, parsed, randomFn);
   }
   return null;
 }
@@ -407,9 +420,9 @@ function answerChooseVariant(state, task, parsed, input) {
   });
 }
 
-function answerBuildWord(state, task, parsed, input) {
+function answerBuildWord(state, task, parsed, runtime, input) {
   const letterIndex = input?.letterIndex;
-  if (!Number.isInteger(letterIndex) || letterIndex < 0 || letterIndex >= parsed.letters.length) {
+  if (!Number.isInteger(letterIndex) || letterIndex < 0 || letterIndex >= runtime.shuffledLetters.length) {
     throw new Error("Некорректный индекс буквы.");
   }
 
@@ -419,7 +432,7 @@ function answerBuildWord(state, task, parsed, input) {
   }
 
   usedIndexes.push(letterIndex);
-  const selectedWord = usedIndexes.map((index) => parsed.letters[index]).join("");
+  const selectedWord = usedIndexes.map((index) => runtime.shuffledLetters[index]).join("");
 
   if (selectedWord.length < parsed.targetWord.length) {
     state.currentStepIndex += 1;
@@ -477,6 +490,7 @@ function answerPairMatch(state, task, parsed, input) {
     hint: task.hint,
     selectedWord,
     correctWord,
+    correctMap: parsed.correctMap,
     wrongIndexes: wrongLeft,
     message: wrongLeft.length === 0 ? "Верно" : "Ошибка",
   });
@@ -496,6 +510,7 @@ export function answerCurrent(state, input) {
   }
 
   const parsed = getTaskModel(task);
+  const runtime = getTaskRuntime(task);
 
   if (task.type === "insertMissingLetters") {
     return answerInsertMissingLetters(state, task, parsed, input);
@@ -504,7 +519,7 @@ export function answerCurrent(state, input) {
     return answerChooseVariant(state, task, parsed, input);
   }
   if (task.type === "buildForeignWord") {
-    return answerBuildWord(state, task, parsed, input);
+    return answerBuildWord(state, task, parsed, runtime, input);
   }
   if (task.type === "pairMatch") {
     return answerPairMatch(state, task, parsed, input);
@@ -513,7 +528,7 @@ export function answerCurrent(state, input) {
     if (parsed.mode === "chooseVariant") {
       return answerChooseVariant(state, task, parsed, input);
     }
-    return answerBuildWord(state, task, parsed, input);
+    return answerBuildWord(state, task, parsed, runtime, input);
   }
 
   throw new Error("Неизвестный тип задания.");

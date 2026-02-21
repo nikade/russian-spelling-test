@@ -8,7 +8,7 @@
   startQuiz,
   validateTask,
 } from "./js/quiz.js";
-import { canGoNext, getCurrentTask, nextTask } from "./js/state.js";
+import { canGoNext, getCurrentTask, nextTask, resetCurrentTask } from "./js/state.js";
 import { renderResult, renderSetup, renderTask } from "./js/render.js";
 
 const appNode = document.getElementById("app");
@@ -233,33 +233,6 @@ function renderCurrentTask() {
     currentSelections: quizState.currentSelections,
     currentStepIndex: quizState.currentStepIndex,
   });
-
-  if (!quizState.currentOutcome) {
-    appNode.querySelectorAll(".option-btn[data-letter]").forEach((node) => {
-      node.addEventListener("click", () => submitAnswer({ letter: node.dataset.letter }));
-    });
-
-    appNode.querySelectorAll(".option-btn[data-answer-index]").forEach((node) => {
-      node.addEventListener("click", () => submitAnswer({ index: Number(node.dataset.answerIndex) }));
-    });
-
-    appNode.querySelectorAll(".option-btn[data-letter-index]").forEach((node) => {
-      node.addEventListener("click", () => submitAnswer({ letterIndex: Number(node.dataset.letterIndex) }));
-    });
-
-    const pairCheckBtn = appNode.querySelector("#pairCheckBtn");
-    if (pairCheckBtn) {
-      pairCheckBtn.addEventListener("click", () => {
-        const mapping = {};
-        appNode.querySelectorAll(".pair-select").forEach((select) => {
-          mapping[select.dataset.left] = select.value;
-        });
-        submitAnswer({ mapping });
-      });
-    }
-  }
-
-  appNode.querySelector("#nextBtn").addEventListener("click", onNextClick);
 }
 
 function submitAnswer(input) {
@@ -272,6 +245,83 @@ function submitAnswer(input) {
   renderCurrentTask();
 }
 
+// Global event delegation for option buttons
+appNode.addEventListener("click", (event) => {
+  const target = event.target;
+  const button = target.closest(".option-btn");
+
+  if (!button || quizState?.currentOutcome) return;
+
+  if (button.dataset.letter) {
+    submitAnswer({ letter: button.dataset.letter });
+  } else if (button.dataset.answerIndex !== undefined) {
+    submitAnswer({ index: Number(button.dataset.answerIndex) });
+  } else if (button.dataset.letterIndex !== undefined) {
+    submitAnswer({ letterIndex: Number(button.dataset.letterIndex) });
+  }
+});
+
+// Global event delegation for next button
+appNode.addEventListener("click", (event) => {
+  if (event.target.closest("#nextBtn") && quizState) {
+    onNextClick();
+  }
+});
+
+// Global event delegation for clear button
+appNode.addEventListener("click", (event) => {
+  if (event.target.closest("#clearBtn") && quizState && !quizState.currentOutcome) {
+    resetCurrentTask(quizState);
+    renderCurrentTask();
+  }
+});
+
+// Global event delegation for pair check button
+appNode.addEventListener("click", (event) => {
+  const target = event.target;
+  const button = target.closest("#pairCheckBtn");
+
+  if (!button || quizState?.currentOutcome) return;
+
+  try {
+    const mapping = {};
+    appNode.querySelectorAll(".pair-select").forEach((select) => {
+      mapping[select.dataset.left] = select.value;
+    });
+    submitAnswer({ mapping });
+  } catch (error) {
+    // Display error to user
+    const feedback = document.getElementById("feedback");
+    if (feedback) {
+      feedback.className = "feedback error";
+      feedback.innerHTML = `<h3 class="feedback-title">Ошибка</h3><p>${escapeHtml(error.message)}</p>`;
+    }
+    console.error("Pair check error:", error);
+  }
+});
+
+function escapeHtml(str) {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+// Global event delegation for restart and change dictionary buttons
+appNode.addEventListener("click", (event) => {
+  const target = event.target;
+  const restartBtn = target.closest("#restartBtn");
+  const changeDictBtn = target.closest("#changeDictionaryBtn");
+
+  if (restartBtn) {
+    startNewQuiz();
+  } else if (changeDictBtn) {
+    renderSetupScreen();
+  }
+});
+
 function onNextClick() {
   nextTask(quizState);
 
@@ -282,8 +332,6 @@ function onNextClick() {
       subjectTitle: currentSubject.title,
       dictionaryTitle: currentDictionary.title,
     });
-    appNode.querySelector("#restartBtn").addEventListener("click", startNewQuiz);
-    appNode.querySelector("#changeDictionaryBtn").addEventListener("click", renderSetupScreen);
     return;
   }
 

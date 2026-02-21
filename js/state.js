@@ -50,3 +50,10 @@ export function nextTask(state) {
   state.currentOutcome = null;
   return state;
 }
+
+export function resetCurrentTask(state) {
+  state.currentSelections = [];
+  state.currentStepIndex = 0;
+  state.currentOutcome = null;
+  return state;
+}

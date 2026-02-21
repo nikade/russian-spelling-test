@@ -81,51 +81,94 @@ export function renderTask(container, payload) {
     currentStepIndex,
   } = payload;
 
+  const needsClearBtn = task.type === "insertMissingLetters" ||
+                         task.type === "buildForeignWord" ||
+                         (task.type === "audioToWord" && parsed.mode === "buildWord");
+
+  const isPairMatch = task.type === "pairMatch";
+
+  const showClearBtn = !outcome && needsClearBtn;
+  const clearBtnDisabled = !currentSelections?.length && currentStepIndex === 0;
+  const showMainActions = !isPairMatch;
+
+  const feedbackClass = outcome
+    ? (outcome.isCorrect ? "feedback success" : "feedback error")
+    : "feedback empty";
+
   container.innerHTML = `
     <div class="row">
       <h1 class="title">Тест на правильность написания</h1>
       <span class="progress">Задание ${index + 1} из ${total}</span>
     </div>
-    <section class="task-panel">
-      ${renderTaskBody(task, parsed, runtime, outcome, currentSelections, currentStepIndex)}
-    </section>
-    <section class="feedback" id="feedback">
-      ${renderFeedback(outcome)}
-    </section>
+    <div class="content-wrapper">
+      <section class="task-panel">
+        ${renderTaskBody(task, parsed, runtime, outcome, currentSelections, currentStepIndex)}
+      </section>
+      <section class="feedback ${feedbackClass}" id="feedback">
+        ${renderFeedback(outcome)}
+      </section>
+    </div>
     <div class="actions">
-      <md-filled-button id="nextBtn" ${nextEnabled ? "" : "disabled"}>Дальше</md-filled-button>
+      ${task.type === "pairMatch" && !outcome ? `
+        <md-filled-button id="pairCheckBtn">Проверить</md-filled-button>
+      ` : showClearBtn ? `
+        <md-outlined-button id="clearBtn" ${clearBtnDisabled ? "disabled" : ""}>Очистить</md-outlined-button>
+      ` : `
+        <md-filled-button id="nextBtn" ${nextEnabled ? "" : "disabled"}>Дальше</md-filled-button>
+      `}
     </div>
   `;
 }
 
 export function renderResult(container, result) {
   const items = result.wrongItems
-    .map(
-      (item) => `
-        <li>
-          ${item.wordMask}: выбрано «${item.selectedLetter}», правильно «${item.correctLetter}». ${item.hint}
-        </li>
-      `,
-    )
+    .map((outcome) => {
+      // Format error information based on outcome type
+      let errorText = '';
+
+      if (outcome.taskType === 'insertMissingLetters') {
+        const wrongLetters = outcome.wrongIndexes.map(idx => {
+          const correctLetter = outcome.correctWord[idx];
+          return `позиция ${idx + 1}: «${correctLetter}»`;
+        }).join(', ');
+        errorText = `${outcome.selectedWord} (ошибки: ${wrongLetters}). ${outcome.hint || ''}`;
+      } else if (outcome.taskType === 'chooseWordVariant') {
+        errorText = `выбрано «${outcome.selectedWord}», правильно «${outcome.correctWord}». ${outcome.hint || ''}`;
+      } else if (outcome.taskType === 'pairMatch') {
+        const wrongPairs = outcome.wrongIndexes || [];
+        if (Array.isArray(wrongPairs) && wrongPairs.length > 0) {
+          errorText = wrongPairs.map(pair => `${pair} → ${outcome.correctMap[pair] || '?'}`).join(', ');
+        }
+        errorText += `. ${outcome.hint || ''}`;
+      } else {
+        errorText = `${outcome.hint || 'Ошибка в ответе'}`;
+      }
+
+      return `<li>${errorText}</li>`;
+    })
     .join("");
 
   container.innerHTML = `
     <div class="row">
       <h1 class="title">Тест завершен</h1>
     </div>
-    <section class="feedback">
+    <section class="feedback ${result.wrongCount === 0 ? 'success' : 'error'}">
+      <h3 class="feedback-title">${result.wrongCount === 0 ? '🎉 Отличный результат!' : 'Тест завершён'}</h3>
       <p><strong>Верных:</strong> ${result.correctCount}</p>
       <p><strong>Ошибок:</strong> ${result.wrongCount}</p>
       <p><strong>Процент:</strong> ${result.percent}%</p>
-      <p><strong>Слова с ошибками:</strong></p>
       ${
-        items
-          ? `<ul class="result-list">${items}</ul>`
-          : "<p>Ошибок нет. Отличный результат!</p>"
+        result.wrongCount > 0 && items
+          ? `<p style="margin-top: 12px;"><strong>Слова с ошибками:</strong></p>
+          <ul class="result-list">${items}</ul>`
+          : result.wrongCount === 0
+          ? `<p>Вы не допустили ни одной ошибки!</p>`
+          : ""
       }
     </section>
     <div class="actions">
       <md-filled-button id="restartBtn">Пройти ещё раз</md-filled-button>
+      <md-outlined-button id="changeDictionaryBtn">Сменить словарь</md-outlined-button>
     </div>
   `;
 }
@@ -137,8 +180,12 @@ function renderTaskBody(task, parsed, runtime, outcome, currentSelections, curre
     case "chooseWordVariant":
       return renderChooseVariantTask(task, parsed, outcome);
     case "buildForeignWord":
+      return renderBuildWordTask(task, parsed, runtime, outcome, currentSelections);
     case "audioToWord":
-      return renderBuildWordTask(task, parsed, outcome, currentSelections);
+      if (parsed.mode === "chooseVariant") {
+        return renderChooseVariantTask(task, parsed, outcome);
+      }
+      return renderBuildWordTask(task, parsed, runtime, outcome, currentSelections);
     case "pairMatch":
       return renderPairMatchTask(task, runtime, outcome);
     default:
@@ -148,6 +195,10 @@ function renderTaskBody(task, parsed, runtime, outcome, currentSelections, curre
 
 function renderOrthogramTask(task, parsed, outcome, currentSelections, currentStepIndex) {
   const promptHtml = task.prompt ? `<p class="task-prompt">${escapeHtml(task.prompt)}</p>` : "";
+
+  if (!parsed || !parsed.orthograms || parsed.orthograms.length === 0) {
+    return `<p class="error">Некорректные данные задания</p>`;
+  }
 
   if (parsed.orthograms.length === 1) {
     // One orthogram - simple selection
@@ -197,7 +248,7 @@ function renderOrthogramTask(task, parsed, outcome, currentSelections, currentSt
       const isPast = seg.orthIndex < currentStep;
 
       if (isPast || outcome) {
-        const letter = outcome ? outcome.selectedLetters[seg.orthIndex] : currentSelections[seg.orthIndex];
+        const letter = outcome?.selectedLetters ? outcome.selectedLetters[seg.orthIndex] : currentSelections[seg.orthIndex];
         const correct = parsed.orthograms[seg.orthIndex].correct;
         const cssClass = letter === correct ? "word-gap" : "word-gap word-wrong-letter";
         return `<span class="${cssClass}">${letter}</span>`;
@@ -214,7 +265,7 @@ function renderOrthogramTask(task, parsed, outcome, currentSelections, currentSt
         ${orth.options
           .map(
             (opt, idx) =>
-              `<md-outlined-button class="option-btn" data-letter-index="${idx}">
+              `<md-outlined-button class="option-btn" data-letter="${opt}" data-letter-index="${idx}">
                 <span class="option-letter">${opt}</span>
               </md-outlined-button>`,
           )
@@ -249,10 +300,13 @@ function renderChooseVariantTask(task, parsed, outcome) {
   `;
 }
 
-function renderBuildWordTask(task, parsed, outcome, currentSelections) {
+function renderBuildWordTask(task, parsed, runtime, outcome, currentSelections) {
   const promptHtml = task.prompt ? `<p class="task-prompt">${escapeHtml(task.prompt)}</p>` : "";
 
-  const currentWord = (currentSelections ?? []).join("");
+  // currentSelections contains indexes into runtime.shuffledLetters
+  const currentWord = (currentSelections ?? [])
+    .map((idx) => runtime.shuffledLetters[idx])
+    .join("");
 
   const wordHtml =
     currentWord.length > 0
@@ -264,7 +318,7 @@ function renderBuildWordTask(task, parsed, outcome, currentSelections) {
   const optionsHtml = outcome
     ? ""
     : `<div class="options">
-      ${parsed.shuffledLetters.map(
+      ${runtime.shuffledLetters.map(
         (letter, idx) =>
           `<md-outlined-button class="option-btn" data-letter-index="${idx}">
             <span class="option-letter">${letter}</span>
@@ -296,9 +350,6 @@ function renderPairMatchTask(task, runtime, outcome) {
           </select>
         </div>
       `).join("")}
-    </div>
-    <div class="actions">
-      <md-filled-button id="pairCheckBtn">Проверить</md-filled-button>
     </div>`;
 
   return `
@@ -318,26 +369,22 @@ export function fillOptionButtons(optionsNode, options) {
 
 function renderFeedback(outcome) {
   if (!outcome) {
-    return `<p class="feedback-neutral"></p>`;
+    return ``;
   }
 
   if (outcome.isCorrect) {
     return `
-      <div class="feedback-state feedback-success">
-        <h3 class="feedback-title">Верно!</h3>
-      </div>
+      <h3 class="feedback-title">✓ Верно!</h3>
     `;
   }
 
   return `
-    <div class="feedback-state feedback-error">
-      <h3 class="feedback-title">Ошибка</h3>
-      ${outcome.hint ? `<p>${formatHint(outcome.hint)}</p>` : ""}
-      ${outcome.correctWord !== undefined ? `
-        <p class="correct-word-label">Правильное написание:</p>
-        <p class="correct-word">${outcome.correctWord}</p>
-      ` : ""}
-    </div>
+    <h3 class="feedback-title">✗ Ошибка</h3>
+    ${outcome.hint ? `<p>${formatHint(outcome.hint)}</p>` : ""}
+    ${outcome.correctWord !== undefined ? `
+      <p class="correct-word-label">Правильное написание:</p>
+      <p class="correct-word">${outcome.correctWord}</p>
+    ` : ""}
   `;
 }
 
