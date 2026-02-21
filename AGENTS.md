@@ -67,6 +67,52 @@
 - `spellingQuiz.learnedWords`:
   - массив ключей `<type>:<correctWord>`
 
+## Visual Testing Guidelines
+Для тестирования UI и проверки визуальных изменений используйте MCP chrome-devtools:
+
+1. **Запуск dev сервера:**
+   ```bash
+   npm run dev
+   ```
+   Сервер запускается на `http://localhost:4173`
+
+2. **Открытие страницы в браузере:**
+   ```
+   mcp__chrome-devtools__new_page
+   url: http://localhost:4173
+   ```
+
+3. **Получение snapshot (снимка состояния DOM):**
+   ```
+   mcp__chrome-devtools__take_snapshot
+   ```
+   Возвращает древовидную структуру страницы с UID элементов для взаимодействия.
+
+4. **Взаимодействие с элементами:**
+   - Клик: `mcp__chrome-devtools__click` с параметром `uid`
+   - Заполнение формы: `mcp__chrome-devtools__fill` с параметрами `uid` и `value`
+   - Навигация: `mcp__chrome-devtools__navigate_page` с параметром `type` (url/reload)
+
+5. **Скриншоты для визуальной проверки:**
+   ```
+   mcp__chrome-devtools__take_screenshot
+   ```
+   Делает скриншот текущего viewport для проверки рендеринга.
+
+6. **Выполнение JavaScript для отладки:**
+   ```
+   mcp__chrome-devtools__evaluate_script
+   function: () => { /* JS код */ }
+   ```
+   Позволяет проверить стили, классы и состояние элементов.
+
+**Порядок тестирования визуальных изменений:**
+1. Открыть страницу через `new_page`
+2. Пройти пользовательский сценарий (клики, заполнение форм)
+3. Сделать snapshot чтобы проверить DOM-структуру
+4. Сделать скриншот для визуальной проверки
+5. При необходимости использовать `evaluate_script` для проверки CSS/JS
+
 ## Commit & Pull Request Guidelines
 - Conventional Commits: `feat:`, `fix:`, `docs:`, `test:`, `style:`.
 - PR checklist:

@@ -79,6 +79,7 @@ export function renderTask(container, payload) {
     nextEnabled,
     currentSelections,
     currentStepIndex,
+    dictionaryTitle,
   } = payload;
 
   const needsClearBtn = task.type === "insertMissingLetters" ||
@@ -97,7 +98,7 @@ export function renderTask(container, payload) {
 
   container.innerHTML = `
     <div class="row">
-      <h1 class="title">Тест на правильность написания</h1>
+      <h1 class="title">${escapeHtml(dictionaryTitle)}</h1>
       <span class="progress">Задание ${index + 1} из ${total}</span>
     </div>
     <div class="content-wrapper">
@@ -283,6 +284,10 @@ function renderOrthogramTask(task, parsed, outcome, currentSelections, currentSt
 function renderChooseVariantTask(task, parsed, outcome) {
   const promptHtml = task.prompt ? `<p class="task-prompt">${escapeHtml(task.prompt)}</p>` : "";
 
+  const audioHtml = parsed.audioSrc
+    ? renderAudioPlayer(parsed.audioSrc)
+    : "";
+
   const variantsHtml = outcome
     ? ""
     : `<div class="options">
@@ -296,6 +301,7 @@ function renderChooseVariantTask(task, parsed, outcome) {
 
   return `
     ${promptHtml}
+    ${audioHtml}
     ${variantsHtml}
   `;
 }
@@ -303,33 +309,75 @@ function renderChooseVariantTask(task, parsed, outcome) {
 function renderBuildWordTask(task, parsed, runtime, outcome, currentSelections) {
   const promptHtml = task.prompt ? `<p class="task-prompt">${escapeHtml(task.prompt)}</p>` : "";
 
-  // currentSelections contains indexes into runtime.shuffledLetters
-  const currentWord = (currentSelections ?? [])
-    .map((idx) => runtime.shuffledLetters[idx])
-    .join("");
+  const audioHtml = parsed.audioSrc
+    ? renderAudioPlayer(parsed.audioSrc)
+    : "";
 
-  const wordHtml =
-    currentWord.length > 0
-      ? `<p class="word">${currentWord.split("").map((letter) =>
-          letter === " " ? "&nbsp;" : letter,
-        ).join("")}</p>`
-      : "";
+  // Показываем sourceWord как подсказку, если есть
+  const sourceHtml = parsed.sourceWord
+    ? `<p class="task-source">${escapeHtml(parsed.sourceWord)}</p>`
+    : "";
+
+  const targetLength = parsed.targetWord.length;
+
+  // Показываем слово с placeholder'ами для незаполненных позиций
+  let wordDisplay = "";
+
+  if (outcome) {
+    // После ответа - показываем собранное слово с подсветкой ошибок
+    const selectedWord = outcome.selectedWord || "";
+    const wrongIndexes = outcome.wrongIndexes || [];
+
+    wordDisplay = selectedWord.split("").map((letter, idx) => {
+      const isWrong = wrongIndexes.includes(idx);
+      const cssClass = isWrong ? "word-gap word-wrong-letter" : "word-gap";
+      return `<span class="${cssClass}">${letter}</span>`;
+    }).join("");
+  } else {
+    // В процессе сборки - показываем выбранные буквы + placeholder'ы
+    const selectedLetters = (currentSelections ?? [])
+      .map((idx) => runtime.shuffledLetters[idx]);
+
+    for (let i = 0; i < targetLength; i++) {
+      if (i < selectedLetters.length) {
+        wordDisplay += `<span class="word-gap word-gap-active">${selectedLetters[i]}</span>`;
+      } else {
+        wordDisplay += `<span class="word-gap">..</span>`;
+      }
+    }
+  }
+
+  const wordHtml = `<p class="word">${wordDisplay}</p>`;
 
   const optionsHtml = outcome
     ? ""
     : `<div class="options">
       ${runtime.shuffledLetters.map(
-        (letter, idx) =>
-          `<md-outlined-button class="option-btn" data-letter-index="${idx}">
+        (letter, idx) => {
+          const isUsed = currentSelections?.includes(idx);
+          return `<md-outlined-button class="option-btn" data-letter-index="${idx}" ${isUsed ? "disabled" : ""}>
             <span class="option-letter">${letter}</span>
-          </md-outlined-button>`,
+          </md-outlined-button>`;
+        }
       ).join("")}
     </div>`;
 
   return `
     ${promptHtml}
+    ${sourceHtml}
+    ${audioHtml}
     ${wordHtml}
     ${optionsHtml}
+  `;
+}
+
+function renderAudioPlayer(audioSrc) {
+  return `
+    <div class="audio-wrap">
+      <audio controls src="${escapeHtml(audioSrc)}">
+        Ваш браузер не поддерживает аудио элемент.
+      </audio>
+    </div>
   `;
 }
 

@@ -215,6 +215,7 @@ function startNewQuiz() {
   const pickedTasks = buildQuizTasks(currentDictionary.tasks, requestedCount, [...learnedWords]);
   quizState = startQuiz(pickedTasks, pickedTasks.length);
   renderCurrentTask();
+  playAudioWithDelay();
 }
 
 function renderCurrentTask() {
@@ -232,7 +233,24 @@ function renderCurrentTask() {
     nextEnabled: canGoNext(quizState),
     currentSelections: quizState.currentSelections,
     currentStepIndex: quizState.currentStepIndex,
+    dictionaryTitle: currentDictionary.title,
   });
+}
+
+function playAudioWithDelay() {
+  const task = getCurrentTask(quizState);
+  const parsed = getTaskParsed(task);
+
+  if (task.type === "audioToWord" && parsed.audioSrc && !quizState.currentOutcome) {
+    setTimeout(() => {
+      const audioElement = document.querySelector('.audio-wrap audio');
+      if (audioElement) {
+        audioElement.play().catch(err => {
+          console.log('Autoplay prevented:', err);
+        });
+      }
+    }, 300);
+  }
 }
 
 function submitAnswer(input) {
@@ -336,6 +354,7 @@ function onNextClick() {
   }
 
   renderCurrentTask();
+  playAudioWithDelay();
 }
 
 async function bootstrap() {

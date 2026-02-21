@@ -59,7 +59,7 @@ body {
   flex-direction: column;
   gap: 16px;
   margin-top: 16px;
-  height: 280px;
+  min-height: 280px;
 }
 
 .task-panel {
@@ -72,6 +72,15 @@ body {
 .task-prompt {
   margin: 0 0 12px;
   font-weight: 700;
+}
+
+.task-source {
+  margin: 0 0 16px;
+  font-size: clamp(2rem, 9vw, 3rem);
+  font-weight: 800;
+  color: var(--text-muted);
+  text-align: center;
+  letter-spacing: 0.03em;
 }
 
 .setup-block {
@@ -160,6 +169,9 @@ body {
 }
 
 .word-gap {
+  position: relative;
+  display: inline-block;
+  line-height: 1;
   color: #8ca0b7;
   background: #e9f0f8;
   border-radius: 8px;
@@ -185,7 +197,7 @@ body {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 0.11em;
+  width: 0.15em;
   height: 1.18em;
   background: #9f2323;
   transform: translate(-50%, -50%) rotate(45deg);
@@ -236,14 +248,6 @@ body {
   padding: 8px;
   border: 1px solid #cdd9e8;
   border-radius: 8px;
-}
-
-.audio-wrap {
-  margin-bottom: 12px;
-}
-
-.audio-wrap audio {
-  width: 100%;
 }
 
 .feedback {
@@ -353,3 +357,20 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* Аудио плеер */
+.audio-wrap {
+  margin: 16px 0;
+  padding: 16px;
+  background: #f8fbff;
+  border: 2px solid #d8e3f0;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.audio-wrap audio {
+  width: 100%;
+  max-width: 400px;
+  height: 40px;
+}
+
