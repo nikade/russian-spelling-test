@@ -49,11 +49,11 @@
 ## Dictionary Data Rules
 - Supported `type` values:
   - `insertMissingLetters` — токены `[варианты|правильная]`, минимум 1 токен, варианты (2-4) содержат правильную букву.
-  - `chooseWordVariant` — массив `variants` (2-4 слов), `correctIndex` или `correctWord` идентифицирует ответ.
+  - `chooseWordVariant` — массив `variants` (2-6 слов), `correctIndex` идентифицирует ответ, опционально `question`; варианты перемешиваются при показе.
   - `buildForeignWord` — `targetWord`, `letters[]` (массив букв, задаётся вручную, допускаются дубли, каждая буква используется не больше одного раза), опционально `sourceWord`/`prompt`.
   - `pairMatch` — `pairs: [[left,right], ...]` с готовыми строками; значения внутри каждой стороны уникальны, перемешивание выполняется на клиенте.
-  - `audioToWord` — `audioSrc`, `mode: "chooseVariant" | "buildWord"`; в первом случае нужны `variants`, во втором `letters[]` как у `buildForeignWord`.
-- Общие поля: `type`, `hint`, опциональный `prompt`, вспомогательные данные (`word`, `variants`, `pairs`, `letters`).
+  - `audioToWord` — `audioSrc`, `mode: "chooseVariant" | "buildWord"`; в первом случае нужны `variants` (перемешиваются), во втором `letters[]` как у `buildForeignWord`.
+- Общие поля: `type`, `hint`, опциональный `prompt` (если отсутствует или пустой — не отображается и не занимает место), вспомогательные данные (`word`, `variants`, `pairs`, `letters`).
 - `hint` формат: `**жирный**`, `__подчеркнутый__`, ударение символом `` ` `` после гласной, `\n` > `<br>`.
 - `id` не используется.
 - Левые буквы/доп. варианты задаются только явно в JSON (нет `allowExtraLetters`).

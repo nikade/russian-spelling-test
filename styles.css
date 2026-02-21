@@ -83,6 +83,15 @@ body {
   letter-spacing: 0.03em;
 }
 
+.task-question {
+  margin: 0 0 16px;
+  font-size: clamp(2rem, 9vw, 3rem);
+  font-weight: 800;
+  color: var(--text-main);
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
 .setup-block {
   margin-top: 18px;
 }

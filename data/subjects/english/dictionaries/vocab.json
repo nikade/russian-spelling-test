@@ -1,4 +1,4 @@
-﻿{
+{
   "title": "Сборка слов",
   "description": "Собери слово на английском",
   "tasks": [
@@ -8,6 +8,15 @@
       "sourceWord": "стол",
       "targetWord": "table",
       "letters": ["t", "a", "b", "l", "e", "d", "p"],
+      "hint": "**table** — это __стол__."
+    },
+    {
+      "type": "chooseWordVariant",
+      "prompt": "Выбери правильный перевод",
+      "questionDisplay": "Стол",
+      "questionAnswer": "Стол → Table",
+      "variants": ["table", "chair", "desk", "shelf"],
+      "correctIndex": 0,
       "hint": "**table** — это __стол__."
     },
     {

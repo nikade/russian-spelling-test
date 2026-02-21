@@ -157,6 +157,8 @@ function parseChooseWordVariant(task) {
   return {
     taskType: "chooseWordVariant",
     prompt: task.prompt ?? "Выбери правильное написание",
+    questionDisplay: task.questionDisplay ?? null,
+    questionAnswer: task.questionAnswer ?? null,
     variants: task.variants,
     correctIndex: task.correctIndex,
     correctWord: task.variants[task.correctIndex],
@@ -302,6 +304,17 @@ function getPairRuntime(task, parsed, randomFn = Math.random) {
   return task.__pairRuntime;
 }
 
+function getChooseVariantRuntime(task, parsed, randomFn = Math.random) {
+  if (task.__chooseVariantRuntime) {
+    return task.__chooseVariantRuntime;
+  }
+
+  const variantsWithIndex = parsed.variants.map((variant, index) => ({ variant, index }));
+  const shuffledVariants = shuffleArray(variantsWithIndex, randomFn);
+  task.__chooseVariantRuntime = { shuffledVariants };
+  return task.__chooseVariantRuntime;
+}
+
 function getBuildWordRuntime(task, parsed, randomFn = Math.random) {
   if (task.__buildWordRuntime) {
     return task.__buildWordRuntime;
@@ -329,6 +342,9 @@ export function getTaskRuntime(task, randomFn = Math.random) {
   }
   if (parsed.taskType === "buildForeignWord" || (parsed.taskType === "audioToWord" && parsed.mode === "buildWord")) {
     return getBuildWordRuntime(task, parsed, randomFn);
+  }
+  if (parsed.taskType === "chooseWordVariant" || (parsed.taskType === "audioToWord" && parsed.mode === "chooseVariant")) {
+    return getChooseVariantRuntime(task, parsed, randomFn);
   }
   return null;
 }

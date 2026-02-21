@@ -4,255 +4,291 @@
   "tasks": [
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 2: 2·1=",
+      "questionDisplay": "2 · 1 = ",
+      "questionAnswer": "2 · 1 = 2",
       "variants": ["2", "1", "3", "4"],
       "correctIndex": 0,
-      "hint": "Два умножить на один равно **два**."
+      "hint": "2·1= **2**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 2: 2·2=",
+      "questionDisplay": "2 · 2 = ",
+      "questionAnswer": "2 · 2 = 4",
       "variants": ["4", "3", "5", "6"],
       "correctIndex": 0,
-      "hint": "Два умножить на два равно **четыре**."
+      "hint": "2·2= **4**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 2: 2·3=",
+      "questionDisplay": "2 · 3 = ",
+      "questionAnswer": "2 · 3 = 6",
       "variants": ["6", "4", "5", "9"],
       "correctIndex": 0,
-      "hint": "Два умножить на три равно **шесть**."
+      "hint": "2·3= **6**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 2: 2·4=",
+      "questionDisplay": "2 · 4 = ",
+      "questionAnswer": "2 · 4 = 8",
       "variants": ["8", "6", "7", "10"],
       "correctIndex": 0,
-      "hint": "Два умножить на четыре равно **восемь**."
+      "hint": "2·4= **8**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 2: 2·5=",
-      "variants": ["10", "8", "9", "12"],
+      "questionDisplay": "2 · 5 = ",
+      "questionAnswer": "2 · 5 = 10",
+      "variants": ["10", "8", "9", "12", "15"],
       "correctIndex": 0,
-      "hint": "Два умножить на пять равно **десять**."
+      "hint": "2·5= **10**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 2: 2·6=",
-      "variants": ["12", "10", "11", "14"],
+      "questionDisplay": "2 · 6 = ",
+      "questionAnswer": "2 · 6 = 12",
+      "variants": ["12", "10", "11", "14", "18"],
       "correctIndex": 0,
-      "hint": "Два умножить на шесть равно **двенадцать**."
+      "hint": "2·6= **12**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 2: 2·7=",
-      "variants": ["14", "12", "13", "16"],
+      "questionDisplay": "2 · 7 = ",
+      "questionAnswer": "2 · 7 = 14",
+      "variants": ["14", "12", "13", "16", "18"],
       "correctIndex": 0,
-      "hint": "Два умножить на семь равно **четырнадцать**."
+      "hint": "2·7= **14**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 2: 2·8=",
-      "variants": ["16", "14", "15", "18"],
+      "questionDisplay": "2 · 8 = ",
+      "questionAnswer": "2 · 8 = 16",
+      "variants": ["16", "14", "15", "18", "20"],
       "correctIndex": 0,
-      "hint": "Два умножить на восемь равно **шестнадцать**."
+      "hint": "2·8= **16**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 2: 2·9=",
-      "variants": ["18", "16", "17", "20"],
+      "questionDisplay": "2 · 9 = ",
+      "questionAnswer": "2 · 9 = 18",
+      "variants": ["18", "16", "17", "20", "21"],
       "correctIndex": 0,
-      "hint": "Два умножить на девять равно **восемнадцать**."
+      "hint": "2·9= **18**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 3: 3·1=",
+      "questionDisplay": "3 · 1 = ",
+      "questionAnswer": "3 · 1 = 3",
       "variants": ["3", "2", "4", "6"],
       "correctIndex": 0,
-      "hint": "Три умножить на один равно **три**."
+      "hint": "3·1= **3**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 3: 3·2=",
+      "questionDisplay": "3 · 2 = ",
+      "questionAnswer": "3 · 2 = 6",
       "variants": ["6", "4", "5", "9"],
       "correctIndex": 0,
-      "hint": "Три умножить на два равно **шесть**."
+      "hint": "3·2= **6**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 3: 3·3=",
+      "questionDisplay": "3 · 3 = ",
+      "questionAnswer": "3 · 3 = 9",
       "variants": ["9", "6", "8", "12"],
       "correctIndex": 0,
-      "hint": "Три умножить на три равно **девять**."
+      "hint": "3·3= **9**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 3: 3·4=",
-      "variants": ["12", "9", "10", "15"],
+      "questionDisplay": "3 · 4 = ",
+      "questionAnswer": "3 · 4 = 12",
+      "variants": ["12", "9", "10", "15", "16"],
       "correctIndex": 0,
-      "hint": "Три умножить на четыре равно **двенадцать**."
+      "hint": "3·4= **12**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 3: 3·5=",
-      "variants": ["15", "12", "14", "18"],
+      "questionDisplay": "3 · 5 = ",
+      "questionAnswer": "3 · 5 = 15",
+      "variants": ["15", "12", "14", "18", "20"],
       "correctIndex": 0,
-      "hint": "Три умножить на пять равно **пятнадцать**."
+      "hint": "3·5= **15**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 3: 3·6=",
-      "variants": ["18", "15", "16", "21"],
+      "questionDisplay": "3 · 6 = ",
+      "questionAnswer": "3 · 6 = 18",
+      "variants": ["18", "15", "16", "21", "24"],
       "correctIndex": 0,
-      "hint": "Три умножить на шесть равно **восемнадцать**."
+      "hint": "3·6= **18**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 3: 3·7=",
-      "variants": ["21", "18", "19", "24"],
+      "questionDisplay": "3 · 7 = ",
+      "questionAnswer": "3 · 7 = 21",
+      "variants": ["21", "18", "19", "24", "28"],
       "correctIndex": 0,
-      "hint": "Три умножить на семь равно **двадцать один**."
+      "hint": "3·7= **21**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 3: 3·8=",
-      "variants": ["24", "21", "22", "27"],
+      "questionDisplay": "3 · 8 = ",
+      "questionAnswer": "3 · 8 = 24",
+      "variants": ["24", "21", "22", "27", "32"],
       "correctIndex": 0,
-      "hint": "Три умножить на восемь равно **двадцать четыре**."
+      "hint": "3·8= **24**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 3: 3·9=",
-      "variants": ["27", "24", "25", "30"],
+      "questionDisplay": "3 · 9 = ",
+      "questionAnswer": "3 · 9 = 27",
+      "variants": ["27", "24", "25", "30", "36"],
       "correctIndex": 0,
-      "hint": "Три умножить на девять равно **двадцать семь**."
+      "hint": "3·9= **27**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 4: 4·1=",
+      "questionDisplay": "4 · 1 = ",
+      "questionAnswer": "4 · 1 = 4",
       "variants": ["4", "3", "5", "6"],
       "correctIndex": 0,
-      "hint": "Четыре умножить на один равно **четыре**."
+      "hint": "4·1= **4**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 4: 4·2=",
-      "variants": ["8", "6", "7", "10"],
+      "questionDisplay": "4 · 2 = ",
+      "questionAnswer": "4 · 2 = 8",
+      "variants": ["8", "6", "7", "10", "12"],
       "correctIndex": 0,
-      "hint": "Четыре умножить на два равно **восемь**."
+      "hint": "4·2= **8**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 4: 4·3=",
-      "variants": ["12", "9", "10", "15"],
+      "questionDisplay": "4 · 3 = ",
+      "questionAnswer": "4 · 3 = 12",
+      "variants": ["12", "9", "10", "15", "16"],
       "correctIndex": 0,
-      "hint": "Четыре умножить на три равно **двенадцать**."
+      "hint": "4·3= **12**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 4: 4·4=",
-      "variants": ["16", "12", "15", "18"],
+      "questionDisplay": "4 · 4 = ",
+      "questionAnswer": "4 · 4 = 16",
+      "variants": ["16", "12", "15", "18", "20"],
       "correctIndex": 0,
-      "hint": "Четыре умножить на четыре равно **шестнадцать**."
+      "hint": "4·4= **16**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 4: 4·5=",
-      "variants": ["20", "15", "19", "25"],
+      "questionDisplay": "4 · 5 = ",
+      "questionAnswer": "4 · 5 = 20",
+      "variants": ["20", "15", "19", "25", "30"],
       "correctIndex": 0,
-      "hint": "Четыре умножить на пять равно **двадцать**."
+      "hint": "4·5= **20**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 4: 4·6=",
-      "variants": ["24", "20", "21", "28"],
+      "questionDisplay": "4 · 6 = ",
+      "questionAnswer": "4 · 6 = 24",
+      "variants": ["24", "20", "21", "28", "30"],
       "correctIndex": 0,
-      "hint": "Четыре умножить на шесть равно **двадцать четыре**."
+      "hint": "4·6= **24**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 4: 4·7=",
-      "variants": ["28", "24", "26", "32"],
+      "questionDisplay": "4 · 7 = ",
+      "questionAnswer": "4 · 7 = 28",
+      "variants": ["28", "24", "26", "32", "35"],
       "correctIndex": 0,
-      "hint": "Четыре умножить на семь равно **двадцать восемь**."
+      "hint": "4·7= **28**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 4: 4·8=",
-      "variants": ["32", "28", "30", "36"],
+      "questionDisplay": "4 · 8 = ",
+      "questionAnswer": "4 · 8 = 32",
+      "variants": ["32", "28", "30", "36", "40"],
       "correctIndex": 0,
-      "hint": "Четыре умножить на восемь равно **тридцать два**."
+      "hint": "4·8= **32**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 4: 4·9=",
-      "variants": ["36", "32", "34", "40"],
+      "questionDisplay": "4 · 9 = ",
+      "questionAnswer": "4 · 9 = 36",
+      "variants": ["36", "32", "34", "40", "45"],
       "correctIndex": 0,
-      "hint": "Четыре умножить на девять равно **тридцать шесть**."
+      "hint": "4·9= **36**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 5: 5·1=",
+      "questionDisplay": "5 · 1 = ",
+      "questionAnswer": "5 · 1 = 5",
       "variants": ["5", "4", "6", "10"],
       "correctIndex": 0,
-      "hint": "Пять умножить на один равно **пять**."
+      "hint": "5·1= **5**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 5: 5·2=",
-      "variants": ["10", "8", "9", "15"],
+      "questionDisplay": "5 · 2 = ",
+      "questionAnswer": "5 · 2 = 10",
+      "variants": ["10", "8", "9", "15", "20"],
       "correctIndex": 0,
-      "hint": "Пять умножить на два равно **десять**."
+      "hint": "5·2= **10**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 5: 5·3=",
-      "variants": ["15", "12", "14", "18"],
+      "questionDisplay": "5 · 3 = ",
+      "questionAnswer": "5 · 3 = 15",
+      "variants": ["15", "12", "14", "18", "20"],
       "correctIndex": 0,
-      "hint": "Пять умножить на три равно **пятнадцать**."
+      "hint": "5·3= **15**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 5: 5·4=",
-      "variants": ["20", "16", "19", "25"],
+      "questionDisplay": "5 · 4 = ",
+      "questionAnswer": "5 · 4 = 20",
+      "variants": ["20", "16", "19", "25", "30"],
       "correctIndex": 0,
-      "hint": "Пять умножить на четыре равно **двадцать**."
+      "hint": "5·4= **20**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 5: 5·5=",
-      "variants": ["25", "20", "24", "30"],
+      "questionDisplay": "5 · 5 = ",
+      "questionAnswer": "5 · 5 = 25",
+      "variants": ["25", "20", "24", "30", "35"],
       "correctIndex": 0,
-      "hint": "Пять умножить на пять равно **двадцать пять**."
+      "hint": "5·5= **25**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 5: 5·6=",
-      "variants": ["30", "25", "28", "36"],
+      "questionDisplay": "5 · 6 = ",
+      "questionAnswer": "5 · 6 = 30",
+      "variants": ["30", "25", "28", "36", "40"],
       "correctIndex": 0,
-      "hint": "Пять умножить на шесть равно **тридцать**."
+      "hint": "5·6= **30**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 5: 5·7=",
-      "variants": ["35", "30", "34", "40"],
+      "questionDisplay": "5 · 7 = ",
+      "questionAnswer": "5 · 7 = 35",
+      "variants": ["35", "30", "34", "40", "42"],
       "correctIndex": 0,
-      "hint": "Пять умножить на семь равно **тридцать пять**."
+      "hint": "5·7= **35**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 5: 5·8=",
-      "variants": ["40", "35", "38", "45"],
+      "questionDisplay": "5 · 8 = ",
+      "questionAnswer": "5 · 8 = 40",
+      "variants": ["40", "35", "38", "45", "48"],
       "correctIndex": 0,
-      "hint": "Пять умножить на восемь равно **сорок**."
+      "hint": "5·8= **40**."
     },
     {
       "type": "chooseWordVariant",
-      "prompt": "Таблица умножения на 5: 5·9=",
-      "variants": ["45", "40", "44", "50"],
+      "questionDisplay": "5 · 9 = ",
+      "questionAnswer": "5 · 9 = 45",
+      "variants": ["45", "40", "44", "50", "54"],
       "correctIndex": 0,
-      "hint": "Пять умножить на девять равно **сорок пять**."
+      "hint": "5·9= **45**."
     }
   ]
 }

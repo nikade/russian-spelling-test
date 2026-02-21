@@ -179,12 +179,12 @@ function renderTaskBody(task, parsed, runtime, outcome, currentSelections, curre
     case "insertMissingLetters":
       return renderOrthogramTask(task, parsed, outcome, currentSelections, currentStepIndex);
     case "chooseWordVariant":
-      return renderChooseVariantTask(task, parsed, outcome);
+      return renderChooseVariantTask(task, parsed, runtime, outcome);
     case "buildForeignWord":
       return renderBuildWordTask(task, parsed, runtime, outcome, currentSelections);
     case "audioToWord":
       if (parsed.mode === "chooseVariant") {
-        return renderChooseVariantTask(task, parsed, outcome);
+        return renderChooseVariantTask(task, parsed, runtime, outcome);
       }
       return renderBuildWordTask(task, parsed, runtime, outcome, currentSelections);
     case "pairMatch":
@@ -195,7 +195,7 @@ function renderTaskBody(task, parsed, runtime, outcome, currentSelections, curre
 }
 
 function renderOrthogramTask(task, parsed, outcome, currentSelections, currentStepIndex) {
-  const promptHtml = task.prompt ? `<p class="task-prompt">${escapeHtml(task.prompt)}</p>` : "";
+  const promptHtml = task.prompt && task.prompt.trim() ? `<p class="task-prompt">${escapeHtml(task.prompt)}</p>` : "";
 
   if (!parsed || !parsed.orthograms || parsed.orthograms.length === 0) {
     return `<p class="error">Некорректные данные задания</p>`;
@@ -281,8 +281,17 @@ function renderOrthogramTask(task, parsed, outcome, currentSelections, currentSt
   }
 }
 
-function renderChooseVariantTask(task, parsed, outcome) {
-  const promptHtml = task.prompt ? `<p class="task-prompt">${escapeHtml(task.prompt)}</p>` : "";
+function renderChooseVariantTask(task, parsed, runtime, outcome) {
+  const promptHtml = task.prompt && task.prompt.trim() ? `<p class="task-prompt">${escapeHtml(task.prompt)}</p>` : "";
+
+  // Если есть outcome (после ответа), используем questionAnswer, иначе questionDisplay
+  const questionText = outcome
+    ? (parsed.questionAnswer ?? parsed.questionDisplay ?? null)
+    : parsed.questionDisplay;
+
+  const questionHtml = questionText
+    ? `<p class="task-question">${escapeHtml(questionText)}</p>`
+    : "";
 
   const audioHtml = parsed.audioSrc
     ? renderAudioPlayer(parsed.audioSrc)
@@ -291,9 +300,9 @@ function renderChooseVariantTask(task, parsed, outcome) {
   const variantsHtml = outcome
     ? ""
     : `<div class="options">
-      ${parsed.variants.map(
-        (variant, idx) =>
-          `<md-outlined-button class="option-btn" data-answer-index="${idx}">
+      ${runtime.shuffledVariants.map(
+        ({ variant, index }) =>
+          `<md-outlined-button class="option-btn" data-answer-index="${index}">
             <span class="option-letter">${variant}</span>
           </md-outlined-button>`,
       ).join("")}
@@ -301,13 +310,14 @@ function renderChooseVariantTask(task, parsed, outcome) {
 
   return `
     ${promptHtml}
+    ${questionHtml}
     ${audioHtml}
     ${variantsHtml}
   `;
 }
 
 function renderBuildWordTask(task, parsed, runtime, outcome, currentSelections) {
-  const promptHtml = task.prompt ? `<p class="task-prompt">${escapeHtml(task.prompt)}</p>` : "";
+  const promptHtml = task.prompt && task.prompt.trim() ? `<p class="task-prompt">${escapeHtml(task.prompt)}</p>` : "";
 
   const audioHtml = parsed.audioSrc
     ? renderAudioPlayer(parsed.audioSrc)
@@ -382,7 +392,7 @@ function renderAudioPlayer(audioSrc) {
 }
 
 function renderPairMatchTask(task, runtime, outcome) {
-  const promptHtml = task.prompt ? `<p class="task-prompt">${escapeHtml(task.prompt)}</p>` : "";
+  const promptHtml = task.prompt && task.prompt.trim() ? `<p class="task-prompt">${escapeHtml(task.prompt)}</p>` : "";
 
   const pairsHtml = outcome
     ? ""

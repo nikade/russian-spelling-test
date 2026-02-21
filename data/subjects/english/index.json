@@ -1,4 +1,5 @@
-﻿[
+[
   { "title": "Базовый словарь", "file": "vocab.json" },
-  { "title": "Аудирование", "file": "audio.json" }
+  { "title": "Аудирование", "file": "audio.json" },
+  { "title": "Тест вопроса", "file": "question-test.json" }
 ]
