@@ -286,6 +286,11 @@ body {
   border-color: #f0bebe;
 }
 
+.feedback.error p,
+.feedback.error li {
+  color: var(--text-main);
+}
+
 .feedback p {
   margin: 0 0 10px;
   line-height: 1.5;

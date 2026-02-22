@@ -132,17 +132,17 @@ export function renderResult(container, result) {
           const correctLetter = outcome.correctWord[idx];
           return `позиция ${idx + 1}: «${correctLetter}»`;
         }).join(', ');
-        errorText = `${outcome.selectedWord} (ошибки: ${wrongLetters}). ${outcome.hint || ''}`;
+        errorText = `${outcome.selectedWord} (ошибки: ${wrongLetters}). ${outcome.hint ? formatHint(outcome.hint) : ''}`;
       } else if (outcome.taskType === 'chooseWordVariant') {
-        errorText = `выбрано «${outcome.selectedWord}», правильно «${outcome.correctWord}». ${outcome.hint || ''}`;
+        errorText = `выбрано «${outcome.selectedWord}», правильно «${outcome.correctWord}». ${outcome.hint ? formatHint(outcome.hint) : ''}`;
       } else if (outcome.taskType === 'pairMatch') {
         const wrongPairs = outcome.wrongIndexes || [];
         if (Array.isArray(wrongPairs) && wrongPairs.length > 0) {
           errorText = wrongPairs.map(pair => `${pair} → ${outcome.correctMap[pair] || '?'}`).join(', ');
         }
-        errorText += `. ${outcome.hint || ''}`;
+        errorText += `. ${outcome.hint ? formatHint(outcome.hint) : ''}`;
       } else {
-        errorText = `${outcome.hint || 'Ошибка в ответе'}`;
+        errorText = `${outcome.hint ? formatHint(outcome.hint) : 'Ошибка в ответе'}`;
       }
 
       return `<li>${errorText}</li>`;
@@ -154,7 +154,7 @@ export function renderResult(container, result) {
       <h1 class="title">Тест завершен</h1>
     </div>
     <section class="feedback ${result.wrongCount === 0 ? 'success' : 'error'}">
-      <h3 class="feedback-title">${result.wrongCount === 0 ? '🎉 Отличный результат!' : 'Тест завершён'}</h3>
+      <h3 class="feedback-title">${result.wrongCount === 0 ? '🎉 Отличный результат!' : 'Результаты теста'}</h3>
       <p><strong>Верных:</strong> ${result.correctCount}</p>
       <p><strong>Ошибок:</strong> ${result.wrongCount}</p>
       <p><strong>Процент:</strong> ${result.percent}%</p>
