@@ -111,7 +111,7 @@ export function renderTask(container, payload) {
     </div>
     <div class="actions">
       ${task.type === "pairMatch" && !outcome ? `
-        <md-filled-button id="pairCheckBtn">Проверить</md-filled-button>
+        <md-outlined-button id="pairClearBtn" disabled>Очистить</md-outlined-button>
       ` : showClearBtn ? `
         <md-outlined-button id="clearBtn" ${clearBtnDisabled ? "disabled" : ""}>Очистить</md-outlined-button>
       ` : `

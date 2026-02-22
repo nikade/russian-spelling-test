@@ -1,0 +1,286 @@
+{
+  "title": "2 класс слова 1,2 четверти",
+  "description": "Базовая лексика для 2 класса (1 и 2 четверти)",
+  "tasks": [
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "мама",
+      "targetWord": "mummy",
+      "letters": ["m", "u", "m", "m", "y"],
+      "hint": "**mummy** — это __мама__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "папа",
+      "targetWord": "daddy",
+      "letters": ["d", "a", "d", "d", "y"],
+      "hint": "**daddy** — это __папа__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "бабушка",
+      "targetWord": "grandma",
+      "letters": ["g", "r", "a", "n", "d", "m", "a"],
+      "hint": "**grandma** — это __бабушка__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "дедушка",
+      "targetWord": "grandpa",
+      "letters": ["g", "r", "a", "n", "d", "p", "a"],
+      "hint": "**grandpa** — это __дедушка__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "сестра",
+      "targetWord": "sister",
+      "letters": ["s", "i", "s", "t", "e", "r"],
+      "hint": "**sister** — это __сестра__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "брат",
+      "targetWord": "brother",
+      "letters": ["b", "r", "o", "t", "h", "e", "r"],
+      "hint": "**brother** — это __брат__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "красный",
+      "targetWord": "red",
+      "letters": ["r", "e", "d"],
+      "hint": "**red** — это __красный__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "синий",
+      "targetWord": "blue",
+      "letters": ["b", "l", "u", "e"],
+      "hint": "**blue** — это __синий__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "жёлтый",
+      "targetWord": "yellow",
+      "letters": ["y", "e", "l", "l", "o", "w"],
+      "hint": "**yellow** — это __жёлтый__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "зелёный",
+      "targetWord": "green",
+      "letters": ["g", "r", "e", "e", "n"],
+      "hint": "**green** — это __зелёный__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "белый",
+      "targetWord": "white",
+      "letters": ["w", "h", "i", "t", "e"],
+      "hint": "**white** — это __белый__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "стул",
+      "targetWord": "chair",
+      "letters": ["c", "h", "a", "i", "r"],
+      "hint": "**chair** — это __стул__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "стол",
+      "targetWord": "table",
+      "letters": ["t", "a", "b", "l", "e"],
+      "hint": "**table** — это __стол__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "радио",
+      "targetWord": "radio",
+      "letters": ["r", "a", "d", "i", "o"],
+      "hint": "**radio** — это __радио__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "кровать",
+      "targetWord": "bed",
+      "letters": ["b", "e", "d"],
+      "hint": "**bed** — это __кровать__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "сад",
+      "targetWord": "garden",
+      "letters": ["g", "a", "r", "d", "e", "n"],
+      "hint": "**garden** — это __сад__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "спальня",
+      "targetWord": "bedroom",
+      "letters": ["b", "e", "d", "r", "o", "o", "m"],
+      "hint": "**bedroom** — это __спальня__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "кухня",
+      "targetWord": "kitchen",
+      "letters": ["k", "i", "t", "c", "h", "e", "n"],
+      "hint": "**kitchen** — это __кухня__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "дом",
+      "targetWord": "house",
+      "letters": ["h", "o", "u", "s", "e"],
+      "hint": "**house** — это __дом__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "коричневый",
+      "targetWord": "brown",
+      "letters": ["b", "r", "o", "w", "n"],
+      "hint": "**brown** — это __коричневый__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "чёрный",
+      "targetWord": "black",
+      "letters": ["b", "l", "a", "c", "k"],
+      "hint": "**black** — это __чёрный__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "бургеры",
+      "targetWord": "burgers",
+      "letters": ["b", "u", "r", "g", "e", "r", "s"],
+      "hint": "**burgers** — это __бургеры__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "чипсы",
+      "targetWord": "chips",
+      "letters": ["c", "h", "i", "p", "s"],
+      "hint": "**chips** — это __чипсы__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "печенье",
+      "targetWord": "biscuit",
+      "letters": ["b", "i", "s", "c", "u", "i", "t"],
+      "hint": "**biscuit** — это __печенье__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "яблоко",
+      "targetWord": "apple",
+      "letters": ["a", "p", "p", "l", "e"],
+      "hint": "**apple** — это __яблоко__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "любимый",
+      "targetWord": "favourite",
+      "letters": ["f", "a", "v", "o", "u", "r", "i", "t", "e"],
+      "hint": "**favourite** — это __любимый__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "шоколад",
+      "targetWord": "chocolate",
+      "letters": ["c", "h", "o", "c", "o", "l", "a", "t", "e"],
+      "hint": "**chocolate** — это __шоколад__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "банан",
+      "targetWord": "banana",
+      "letters": ["b", "a", "n", "a", "n", "a"],
+      "hint": "**banana** — это __банан__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "сэндвич",
+      "targetWord": "sandwich",
+      "letters": ["s", "a", "n", "d", "w", "i", "c", "h"],
+      "hint": "**sandwich** — это __сэндвич__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "торт",
+      "targetWord": "cake",
+      "letters": ["c", "a", "k", "e"],
+      "hint": "**cake** — это __торт__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "пицца",
+      "targetWord": "pizza",
+      "letters": ["p", "i", "z", "z", "a"],
+      "hint": "**pizza** — это __пицца__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "молоко",
+      "targetWord": "milk",
+      "letters": ["m", "i", "l", "k"],
+      "hint": "**milk** — это __молоко__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "апельсин",
+      "targetWord": "orange",
+      "letters": ["o", "r", "a", "n", "g", "e"],
+      "hint": "**orange** — это __апельсин__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "сок",
+      "targetWord": "juice",
+      "letters": ["j", "u", "i", "c", "e"],
+      "hint": "**juice** — это __сок__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "еда",
+      "targetWord": "food",
+      "letters": ["f", "o", "o", "d"],
+      "hint": "**food** — это __еда__."
+    }
+  ]
+}

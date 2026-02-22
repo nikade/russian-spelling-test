@@ -1,0 +1,150 @@
+{
+  "title": "2 класс слова 3 четверти",
+  "description": "Базовая лексика для 2 класса (3 четверть)",
+  "tasks": [
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "рыба",
+      "targetWord": "fish",
+      "letters": ["f", "i", "s", "h"],
+      "hint": "**fish** — это __рыба__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "плавать",
+      "targetWord": "swim",
+      "letters": ["s", "w", "i", "m"],
+      "hint": "**swim** — это __плавать__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "лягушка",
+      "targetWord": "frog",
+      "letters": ["f", "r", "o", "g"],
+      "hint": "**frog** — это __лягушка__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "птица",
+      "targetWord": "bird",
+      "letters": ["b", "i", "r", "d"],
+      "hint": "**bird** — это __птица__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "петь",
+      "targetWord": "sing",
+      "letters": ["s", "i", "n", "g"],
+      "hint": "**sing** — это __петь__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "лошадь",
+      "targetWord": "horse",
+      "letters": ["h", "o", "r", "s", "e"],
+      "hint": "**horse** — это __лошадь__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "бежать",
+      "targetWord": "run",
+      "letters": ["r", "u", "n"],
+      "hint": "**run** — это __бежать__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "шимпанзе",
+      "targetWord": "chimp",
+      "letters": ["c", "h", "i", "m", "p"],
+      "hint": "**chimp** — это __шимпанзе__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "танцевать",
+      "targetWord": "dance",
+      "letters": ["d", "a", "n", "c", "e"],
+      "hint": "**dance** — это __танцевать__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "летать",
+      "targetWord": "fly",
+      "letters": ["f", "l", "y"],
+      "hint": "**fly** — это __летать__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "лазить",
+      "targetWord": "climb",
+      "letters": ["c", "l", "i", "m", "b"],
+      "hint": "**climb** — это __лазить__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "девочка",
+      "targetWord": "girl",
+      "letters": ["g", "i", "r", "l"],
+      "hint": "**girl** — это __девочка__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "мальчик",
+      "targetWord": "boy",
+      "letters": ["b", "o", "y"],
+      "hint": "**boy** — это __мальчик__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "мочь",
+      "targetWord": "can",
+      "letters": ["c", "a", "n"],
+      "hint": "**can** — это __мочь__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "цирк",
+      "targetWord": "circus",
+      "letters": ["c", "i", "r", "c", "u", "s"],
+      "hint": "**circus** — это __цирк__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "клоун",
+      "targetWord": "clown",
+      "letters": ["c", "l", "o", "w", "n"],
+      "hint": "**clown** — это __клоун__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "фокусник",
+      "targetWord": "magician",
+      "letters": ["m", "a", "g", "i", "c", "i", "a", "n"],
+      "hint": "**magician** — это __фокусник__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "качели",
+      "targetWord": "swing",
+      "letters": ["s", "w", "i", "n", "g"],
+      "hint": "**swing** — это __качели__."
+    }
+  ]
+}

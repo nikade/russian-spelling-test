@@ -294,27 +294,90 @@ appNode.addEventListener("click", (event) => {
   }
 });
 
-// Global event delegation for pair check button
+// Global event delegation for pair clear button
 appNode.addEventListener("click", (event) => {
-  const target = event.target;
-  const button = target.closest("#pairCheckBtn");
-
+  const button = event.target.closest("#pairClearBtn");
   if (!button || quizState?.currentOutcome) return;
 
-  try {
-    const mapping = {};
-    appNode.querySelectorAll(".pair-select").forEach((select) => {
-      mapping[select.dataset.left] = select.value;
+  const allSelects = appNode.querySelectorAll(".pair-select");
+
+  // Clear all pair selects
+  allSelects.forEach((select) => {
+    select.value = "";
+  });
+
+  // Reset all options - make them visible and enabled
+  allSelects.forEach((select) => {
+    Array.from(select.options).forEach((option) => {
+      option.hidden = false;
+      option.disabled = false;
     });
-    submitAnswer({ mapping });
-  } catch (error) {
-    // Display error to user
-    const feedback = document.getElementById("feedback");
-    if (feedback) {
-      feedback.className = "feedback error";
-      feedback.innerHTML = `<h3 class="feedback-title">Ошибка</h3><p>${escapeHtml(error.message)}</p>`;
+  });
+
+  button.disabled = true;
+});
+
+// Filter pairMatch select options - hide already selected values
+appNode.addEventListener("change", (event) => {
+  const select = event.target;
+  if (!select.classList.contains("pair-select") || quizState?.currentOutcome) return;
+
+  const allSelects = appNode.querySelectorAll(".pair-select");
+  const selectedValues = new Set();
+
+  // Collect all selected values
+  allSelects.forEach((s) => {
+    if (s.value) {
+      selectedValues.add(s.value);
     }
-    console.error("Pair check error:", error);
+  });
+
+  // Update each select's options
+  allSelects.forEach((s) => {
+    const currentValue = s.value;
+
+    Array.from(s.options).forEach((option) => {
+      if (option.value === "") return; // Keep placeholder
+
+      // Hide if selected in another select
+      if (selectedValues.has(option.value) && option.value !== currentValue) {
+        option.hidden = true;
+        option.disabled = true;
+      } else {
+        option.hidden = false;
+        option.disabled = false;
+      }
+    });
+  });
+
+  // Enable/disable clear button
+  const clearBtn = document.getElementById("pairClearBtn");
+  if (clearBtn) {
+    clearBtn.disabled = selectedValues.size === 0;
+  }
+
+  // Auto-submit when all values are selected
+  const task = getCurrentTask(quizState);
+  if (task?.type === "pairMatch" && !quizState.currentOutcome) {
+    const totalPairs = allSelects.length;
+    const selectedCount = selectedValues.size;
+
+    if (selectedCount === totalPairs) {
+      try {
+        const mapping = {};
+        allSelects.forEach((s) => {
+          mapping[s.dataset.left] = s.value;
+        });
+        submitAnswer({ mapping });
+      } catch (error) {
+        const feedback = document.getElementById("feedback");
+        if (feedback) {
+          feedback.className = "feedback error";
+          feedback.innerHTML = `<h3 class="feedback-title">Ошибка</h3><p>${escapeHtml(error.message)}</p>`;
+        }
+        console.error("Pair check error:", error);
+      }
+    }
   }
 });
 
