@@ -447,11 +447,20 @@ function renderFeedback(outcome) {
 }
 
 function formatHint(hint) {
-  return hint
-    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-    .replace(/__(.+?)__/g, "<u>$1</u>")
-    .replace(/`/g, "<strong>&#769;</strong>")
-    .replace(/\n/g, "<br>");
+  // Сначала обрабатываем комбинированные маркеры (более специфичные)
+  let result = hint.replace(/!!__(.+?)__!!/g, '<span class="hint-red hint-underline">$1</span>');
+  result = result.replace(/__!!(.+?)!!__/g, '<span class="hint-red hint-underline">$1</span>');
+
+  // Затем одиночные маркеры
+  result = result.replace(/!!(.+?)!!/g, '<span class="hint-red">$1</span>');
+  result = result.replace(/__(.+?)__/g, '<span class="hint-underline">$1</span>');
+
+  // Существующее форматирование (обратная совместимость)
+  result = result.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+  result = result.replace(/`/g, "<strong>&#769;</strong>");
+  result = result.replace(/\n/g, "<br>");
+
+  return result;
 }
 
 function escapeHtml(str) {

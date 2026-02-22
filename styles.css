@@ -324,6 +324,21 @@ body {
   letter-spacing: 0.02em;
 }
 
+/* Форматирование hint - красный цвет и подчёркивание */
+.feedback p {
+  color: var(--text-main);
+}
+
+.hint-red {
+  color: var(--error);
+}
+
+.hint-underline {
+  text-decoration: underline;
+  text-decoration-color: var(--error);
+  text-underline-offset: 3px;
+}
+
 .actions {
   margin-top: 16px;
   display: flex;
