@@ -1,5 +1,6 @@
 [
   { "title": "Русский язык", "dir": "russian" },
   { "title": "Английский язык", "dir": "english" },
-  { "title": "Математика", "dir": "math" }
+  { "title": "Математика", "dir": "math" },
+  { "title": "Тестирование типов заданий", "dir": "testing" }
 ]

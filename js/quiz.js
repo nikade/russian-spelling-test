@@ -412,6 +412,7 @@ function answerInsertMissingLetters(state, task, parsed, input) {
     isFinal: true,
     hint: task.hint,
     selectedWord,
+    selectedLetters,
     correctWord: parsed.correctWord,
     wrongIndexes,
     message: wrongIndexes.length === 0 ? "Верно" : "Ошибка",
