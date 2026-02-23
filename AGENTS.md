@@ -3,7 +3,7 @@
 ## Project Structure & Module Organization
 - Static web app without bundler.
 - Core files:
-  - `index.html` — entry and Material Web CDN.
+  - `index.html` — entry and Material Web components (optimized bundle).
   - `app.js` — bootstrap, setup flow, localStorage integration.
   - `styles.css` — responsive UI styles.
 - Logic modules:
@@ -19,6 +19,75 @@
   - `tests/state.test.js`
 - Reports:
   - `report01.md`, `report02.md`, `report03.md`, `report04.md`
+
+## Material Web Components
+
+### Currently Used Components
+The project uses only these Material Web components for optimal bundle size:
+
+| Component | Import Path | Usage Locations |
+|-----------|-------------|-----------------|
+| `md-filled-button` | `@material/web/button/filled-button.js` | Primary action buttons (Start, Next, Restart) |
+| `md-outlined-button` | `@material/web/button/outlined-button.js` | Secondary buttons (Clear, Change Dictionary, option buttons) |
+
+### Adding New Components
+
+When adding a new Material Web component:
+
+1. **Find the component name** you need from https://github.com/material-components/material-web/tree/main/packages
+
+2. **Add the import** to `index.html` in the `<script type="module">` block:
+
+   ```html
+   <script type="module">
+     import '@material/web/button/filled-button.js';
+     import '@material/web/button/outlined-button.js';
+     import '@material/web/checkbox/checkbox.js';  // New component
+   </script>
+   ```
+
+3. **Common component imports** (for reference):
+   ```html
+   <!-- Buttons -->
+   import '@material/web/button/filled-button.js';
+   import '@material/web/button/outlined-button.js';
+   import '@material/web/button/text-button.js';
+
+   <!-- Selection -->
+   import '@material/web/checkbox/checkbox.js';
+   import '@material/web/radio/radio.js';
+   import '@material/web/switch/switch.js';
+   import '@material/web/select/filled-select.js';
+   import '@material/web/select/outlined-select.js';
+
+   <!-- Inputs -->
+   import '@material/web/textfield/filled-text-field.js';
+   import '@material/web/textfield/outlined-text-field.js';
+
+   <!-- Other -->
+   import '@material/web/icon/icon.js';
+   import '@material/web/progress/circular-progress.js';
+   import '@material/web/progress/linear-progress.js';
+   import '@material/web/dialog/dialog.js';
+   import '@material/web/list/list-item.js';
+   import '@material/web/tabs/tabs.js';
+   ```
+
+4. **Use the component** in your HTML/JS:
+   ```html
+   <md-filled-button>Click me</md-filled-button>
+   <md-checkbox>Check me</md-checkbox>
+   ```
+
+5. **Verify** that only needed components load in DevTools → Network tab.
+
+### Why Individual Imports?
+
+The project uses individual component imports instead of `@material/web/all.js` to:
+- Reduce bundle size by ~96% (only 2 components vs 50+)
+- Improve page load performance
+- Minimize bandwidth usage for users
+- Make component dependencies explicit
 
 ## Build, Test, and Development Commands
 - `npm run dev` — local server at `http://localhost:4173` (python http.server).
