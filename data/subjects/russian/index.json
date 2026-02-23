@@ -1,6 +1,4 @@
 [
-  { "title": "Орфография", "file": "spelling.json" },
-  { "title": "Выбор слова", "file": "word-variants.json" },
-  { "title": "Словарные слова 2 класс", "file": "grade2-vocabulary/index.json" },
-  { "title": "Тест форматирования hint", "file": "hint-formatting-test.json" }
+  { "title": "Проверяемые безударные гласные в корне слова", "file": "grade2-main.json " },
+  { "title": "Словарные слова 2 класс", "file": "grade2-vocabulary/index.json" }
 ]
