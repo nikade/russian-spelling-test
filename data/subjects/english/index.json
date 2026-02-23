@@ -1,7 +1,4 @@
 [
-  { "title": "Базовый словарь", "file": "vocab.json" },
-  { "title": "Аудирование", "file": "audio.json" },
-  { "title": "Тест вопроса", "file": "question-test.json" },
   { "title": "2 класс слова 1,2 четверти", "file": "grade2-terms1-2.json" },
   { "title": "2 класс слова 3 четверти", "file": "grade2-term3.json" }
 ]
