@@ -48,7 +48,7 @@ export function renderSetup(container, payload) {
 
   container.innerHTML = `
     <div class="row">
-      <h1 class="title">Тест на правильность написания</h1>
+      <h1 class="title">Тест-тренажёр</h1>
     </div>
     <section class="setup-block">
       <h2 class="setup-title">Предмет</h2>
