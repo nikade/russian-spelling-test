@@ -150,16 +150,16 @@
       "type": "buildForeignWord",
       "prompt": "Собери слово на английском",
       "sourceWord": "мишка",
-      "targetWord": "teddy",
-      "letters": ["t", "e", "d", "d", "y"],
-      "hint": "**teddy** bear — это __мишка__."
+      "targetWord": "teddy bear",
+      "letters": ["t", "e", "d", "d", "y", " ", "b", "e", "a", "r"],
+      "hint": "**teddy bear** — это __мишка__."
     },
     {
       "type": "buildForeignWord",
       "prompt": "Собери слово на английском",
       "sourceWord": "солдатик",
-      "targetWord": "soldier",
-      "letters": ["s", "o", "l", "d", "i", "e", "r"],
+      "targetWord": "toy soldier",
+      "letters": ["t", "o", "y", " ", "s", "o", "l", "d", "i", "e", "r"],
       "hint": "**toy soldier** — это __солдатик__."
     },
     {
@@ -222,8 +222,8 @@
       "type": "buildForeignWord",
       "prompt": "Собери слово на английском",
       "sourceWord": "ящик для игрушек",
-      "targetWord": "toybox",
-      "letters": ["t", "o", "y", "b", "o", "x"],
+      "targetWord": "toy box",
+      "letters": ["t", "o", "y", " ", "b", "o", "x"],
       "hint": "**toy box** — это __ящик для игрушек__."
     },
     {
