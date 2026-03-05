@@ -4,22 +4,28 @@
   "tasks": [
     {
       "type": "buildForeignWord",
+      "prompt": "Собери английское выражение",
       "targetWord": "toy box",
       "sourceWord": "игрушка",
-      "letters": ["t", "o", "y", " ", "b", "o", "x", "a", "e"]
+      "letters": ["t", "o", "y", " ", "b", "o", "x", "a", "e"],
+      "hint": "**toy box** — это __игрушка__."
     },
     {
       "type": "buildForeignWord",
+      "prompt": "Собери английское выражение",
       "targetWord": "ice cream",
       "sourceWord": "мороженое",
-      "letters": ["i", "c", "e", " ", "c", "r", "e", "a", "m", "s", "t"]
+      "letters": ["i", "c", "e", " ", "c", "r", "e", "a", "m", "s", "t"],
+      "hint": "**ice cream** — это __мороженое__."
     },
     {
       "type": "audioToWord",
       "mode": "buildWord",
+      "prompt": "Прослушай и собери английское выражение",
       "audioSrc": "/audio/bagazh.mp3",
       "targetWord": "bagage compartment",
-      "letters": ["b", "a", "g", "a", "g", "e", " ", "c", "o", "m", "p", "a", "r", "t", "m", "e", "n", "t"]
+      "letters": ["b", "a", "g", "a", "g", "e", " ", "c", "o", "m", "p", "a", "r", "t", "m", "e", "n", "t"],
+      "hint": "**bagage compartment** - багажное отделение."
     }
   ]
 }
