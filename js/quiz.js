@@ -26,7 +26,7 @@ function ensureStringArray(value, fieldName, minLength = 1, maxLength = Number.M
   if (!Array.isArray(value) || value.length < minLength || value.length > maxLength) {
     throw new Error(`Поле ${fieldName} имеет некорректную длину.`);
   }
-  if (!value.every((item) => typeof item === "string" && item.trim() !== "")) {
+  if (!value.every((item) => typeof item === "string" && item !== "")) {
     throw new Error(`Поле ${fieldName} должно содержать только непустые строки.`);
   }
 }
