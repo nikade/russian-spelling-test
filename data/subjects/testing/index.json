@@ -1,4 +1,5 @@
 [
   { "title": "Все типы заданий", "file": "all-task-types.json" },
-  { "title": "Тест одной пропущенной буквы", "file": "single-missing-letter-test.json" }
+  { "title": "Тест одной пропущенной буквы", "file": "single-missing-letter-test.json" },
+  { "title": "Тест пробелов", "file": "test-spaces.json" }
 ]

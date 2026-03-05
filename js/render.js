@@ -366,7 +366,7 @@ function renderBuildWordTask(task, parsed, runtime, outcome, currentSelections) 
         (letter, idx) => {
           const isUsed = currentSelections?.includes(idx);
           return `<md-outlined-button class="option-btn" data-letter-index="${idx}" ${isUsed ? "disabled" : ""}>
-            <span class="option-letter">${letter}</span>
+            <span class="option-letter">${letter === " " ? "_" : letter}</span>
           </md-outlined-button>`;
         }
       ).join("")}

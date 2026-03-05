@@ -1,0 +1,25 @@
+{
+  "title": "Test Spaces",
+  "description": "Testing space character support",
+  "tasks": [
+    {
+      "type": "buildForeignWord",
+      "targetWord": "toy box",
+      "sourceWord": "игрушка",
+      "letters": ["t", "o", "y", " ", "b", "o", "x", "a", "e"]
+    },
+    {
+      "type": "buildForeignWord",
+      "targetWord": "ice cream",
+      "sourceWord": "мороженое",
+      "letters": ["i", "c", "e", " ", "c", "r", "e", "a", "m", "s", "t"]
+    },
+    {
+      "type": "audioToWord",
+      "mode": "buildWord",
+      "audioSrc": "/audio/bagazh.mp3",
+      "targetWord": "bagage compartment",
+      "letters": ["b", "a", "g", "a", "g", "e", " ", "c", "o", "m", "p", "a", "r", "t", "m", "e", "n", "t"]
+    }
+  ]
+}
