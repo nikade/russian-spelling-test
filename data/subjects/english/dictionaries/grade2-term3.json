@@ -145,6 +145,94 @@
       "targetWord": "swing",
       "letters": ["s", "w", "i", "n", "g"],
       "hint": "**swing** — это __качели__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "мишка",
+      "targetWord": "teddy",
+      "letters": ["t", "e", "d", "d", "y"],
+      "hint": "**teddy** bear — это __мишка__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "солдатик",
+      "targetWord": "soldier",
+      "letters": ["s", "o", "l", "d", "i", "e", "r"],
+      "hint": "**toy soldier** — это __солдатик__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "рядом",
+      "targetWord": "near",
+      "letters": ["n", "e", "a", "r"],
+      "hint": "**near** — это __рядом__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "розовый",
+      "targetWord": "pink",
+      "letters": ["p", "i", "n", "k"],
+      "hint": "**pink** — это __розовый__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "балерина",
+      "targetWord": "ballerina",
+      "letters": ["b", "a", "l", "l", "e", "r", "i", "n", "a"],
+      "hint": "**ballerina** — это __балерина__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "полка",
+      "targetWord": "shelf",
+      "letters": ["s", "h", "e", "l", "f"],
+      "hint": "**shelf** — это __полка__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "под",
+      "targetWord": "under",
+      "letters": ["u", "n", "d", "e", "r"],
+      "hint": "**under** — это __под__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "на",
+      "targetWord": "on",
+      "letters": ["o", "n"],
+      "hint": "**on** — это __на__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "в",
+      "targetWord": "in",
+      "letters": ["i", "n"],
+      "hint": "**in** — это __в__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "ящик для игрушек",
+      "targetWord": "toybox",
+      "letters": ["t", "o", "y", "b", "o", "x"],
+      "hint": "**toy box** — это __ящик для игрушек__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "кукла",
+      "targetWord": "doll",
+      "letters": ["d", "o", "l", "l"],
+      "hint": "**doll** — это __кукла__."
     }
   ]
 }
