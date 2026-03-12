@@ -1,0 +1,150 @@
+{
+  "title": "Таблица умножения на 8, 9",
+  "description": "Таблица умножения для чисел 8, 9",
+  "tasks": [
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "8 · 1 = ",
+      "questionAnswer": "8 · 1 = 8",
+      "variants": ["8", "7", "9", "16"],
+      "correctIndex": 0,
+      "hint": "8·1= **8**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "8 · 2 = ",
+      "questionAnswer": "8 · 2 = 16",
+      "variants": ["16", "14", "18", "24"],
+      "correctIndex": 0,
+      "hint": "8·2= **16**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "8 · 3 = ",
+      "questionAnswer": "8 · 3 = 24",
+      "variants": ["24", "21", "27", "32"],
+      "correctIndex": 0,
+      "hint": "8·3= **24**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "8 · 4 = ",
+      "questionAnswer": "8 · 4 = 32",
+      "variants": ["32", "28", "36", "40"],
+      "correctIndex": 0,
+      "hint": "8·4= **32**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "8 · 5 = ",
+      "questionAnswer": "8 · 5 = 40",
+      "variants": ["40", "35", "45", "48"],
+      "correctIndex": 0,
+      "hint": "8·5= **40**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "8 · 6 = ",
+      "questionAnswer": "8 · 6 = 48",
+      "variants": ["48", "42", "54", "56"],
+      "correctIndex": 0,
+      "hint": "8·6= **48**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "8 · 7 = ",
+      "questionAnswer": "8 · 7 = 56",
+      "variants": ["56", "49", "63", "64"],
+      "correctIndex": 0,
+      "hint": "8·7= **56**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "8 · 8 = ",
+      "questionAnswer": "8 · 8 = 64",
+      "variants": ["64", "56", "72", "63"],
+      "correctIndex": 0,
+      "hint": "8·8= **64**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "8 · 9 = ",
+      "questionAnswer": "8 · 9 = 72",
+      "variants": ["72", "64", "80", "81"],
+      "correctIndex": 0,
+      "hint": "8·9= **72**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "9 · 1 = ",
+      "questionAnswer": "9 · 1 = 9",
+      "variants": ["9", "8", "10", "18"],
+      "correctIndex": 0,
+      "hint": "9·1= **9**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "9 · 2 = ",
+      "questionAnswer": "9 · 2 = 18",
+      "variants": ["18", "16", "20", "27"],
+      "correctIndex": 0,
+      "hint": "9·2= **18**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "9 · 3 = ",
+      "questionAnswer": "9 · 3 = 27",
+      "variants": ["27", "24", "30", "36"],
+      "correctIndex": 0,
+      "hint": "9·3= **27**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "9 · 4 = ",
+      "questionAnswer": "9 · 4 = 36",
+      "variants": ["36", "32", "40", "45"],
+      "correctIndex": 0,
+      "hint": "9·4= **36**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "9 · 5 = ",
+      "questionAnswer": "9 · 5 = 45",
+      "variants": ["45", "40", "50", "54"],
+      "correctIndex": 0,
+      "hint": "9·5= **45**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "9 · 6 = ",
+      "questionAnswer": "9 · 6 = 54",
+      "variants": ["54", "48", "60", "63"],
+      "correctIndex": 0,
+      "hint": "9·6= **54**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "9 · 7 = ",
+      "questionAnswer": "9 · 7 = 63",
+      "variants": ["63", "56", "70", "72"],
+      "correctIndex": 0,
+      "hint": "9·7= **63**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "9 · 8 = ",
+      "questionAnswer": "9 · 8 = 72",
+      "variants": ["72", "64", "80", "81"],
+      "correctIndex": 0,
+      "hint": "9·8= **72**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "9 · 9 = ",
+      "questionAnswer": "9 · 9 = 81",
+      "variants": ["81", "72", "90", "64"],
+      "correctIndex": 0,
+      "hint": "9·9= **81**."
+    }
+  ]
+}

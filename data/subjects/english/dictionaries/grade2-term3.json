@@ -233,6 +233,46 @@
       "targetWord": "doll",
       "letters": ["d", "o", "l", "l"],
       "hint": "**doll** — это __кукла__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери выражение на английском",
+      "sourceWord": "тёмные волосы",
+      "targetWord": "dark hair",
+      "letters": ["d", "a", "r", "k", " ", "h", "a", "i", "r"],
+      "hint": "**dark hair** — это __тёмные волосы__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "глаза",
+      "targetWord": "eyes",
+      "letters": ["e", "y", "e", "s"],
+      "hint": "**eyes** — это __глаза__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "нос",
+      "targetWord": "nose",
+      "letters": ["n", "o", "s", "e"],
+      "hint": "**nose** — это __нос__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "рот",
+      "targetWord": "mouth",
+      "letters": ["m", "o", "u", "t", "h"],
+      "hint": "**mouth** — это __рот__."
+    },
+    {
+      "type": "buildForeignWord",
+      "prompt": "Собери слово на английском",
+      "sourceWord": "уши",
+      "targetWord": "ears",
+      "letters": ["e", "a", "r", "s"],
+      "hint": "**ears** — это __уши__."
     }
   ]
 }

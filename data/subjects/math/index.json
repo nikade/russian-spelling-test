@@ -1,3 +1,5 @@
 ﻿[
-  { "title": "Таблица умножения на 2, 3, 4, 5", "file": "multiplication-2-5.json" }
+  { "title": "Таблица умножения на 2, 3, 4, 5", "file": "multiplication-2-5.json" },
+  { "title": "Таблица умножения на 6, 7", "file": "multiplication-6-7.json" },
+  { "title": "Таблица умножения на 8, 9", "file": "multiplication-8-9.json" }
 ]

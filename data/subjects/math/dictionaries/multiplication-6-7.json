@@ -1,0 +1,150 @@
+{
+  "title": "Таблица умножения на 6, 7",
+  "description": "Таблица умножения для чисел 6, 7",
+  "tasks": [
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "6 · 1 = ",
+      "questionAnswer": "6 · 1 = 6",
+      "variants": ["6", "5", "7", "12"],
+      "correctIndex": 0,
+      "hint": "6·1= **6**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "6 · 2 = ",
+      "questionAnswer": "6 · 2 = 12",
+      "variants": ["12", "10", "14", "18"],
+      "correctIndex": 0,
+      "hint": "6·2= **12**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "6 · 3 = ",
+      "questionAnswer": "6 · 3 = 18",
+      "variants": ["18", "15", "21", "24"],
+      "correctIndex": 0,
+      "hint": "6·3= **18**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "6 · 4 = ",
+      "questionAnswer": "6 · 4 = 24",
+      "variants": ["24", "20", "28", "30"],
+      "correctIndex": 0,
+      "hint": "6·4= **24**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "6 · 5 = ",
+      "questionAnswer": "6 · 5 = 30",
+      "variants": ["30", "25", "35", "36"],
+      "correctIndex": 0,
+      "hint": "6·5= **30**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "6 · 6 = ",
+      "questionAnswer": "6 · 6 = 36",
+      "variants": ["36", "30", "42", "40"],
+      "correctIndex": 0,
+      "hint": "6·6= **36**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "6 · 7 = ",
+      "questionAnswer": "6 · 7 = 42",
+      "variants": ["42", "36", "48", "49"],
+      "correctIndex": 0,
+      "hint": "6·7= **42**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "6 · 8 = ",
+      "questionAnswer": "6 · 8 = 48",
+      "variants": ["48", "42", "54", "56"],
+      "correctIndex": 0,
+      "hint": "6·8= **48**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "6 · 9 = ",
+      "questionAnswer": "6 · 9 = 54",
+      "variants": ["54", "48", "60", "63"],
+      "correctIndex": 0,
+      "hint": "6·9= **54**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "7 · 1 = ",
+      "questionAnswer": "7 · 1 = 7",
+      "variants": ["7", "6", "8", "14"],
+      "correctIndex": 0,
+      "hint": "7·1= **7**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "7 · 2 = ",
+      "questionAnswer": "7 · 2 = 14",
+      "variants": ["14", "12", "16", "21"],
+      "correctIndex": 0,
+      "hint": "7·2= **14**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "7 · 3 = ",
+      "questionAnswer": "7 · 3 = 21",
+      "variants": ["21", "18", "24", "28"],
+      "correctIndex": 0,
+      "hint": "7·3= **21**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "7 · 4 = ",
+      "questionAnswer": "7 · 4 = 28",
+      "variants": ["28", "24", "32", "35"],
+      "correctIndex": 0,
+      "hint": "7·4= **28**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "7 · 5 = ",
+      "questionAnswer": "7 · 5 = 35",
+      "variants": ["35", "30", "40", "42"],
+      "correctIndex": 0,
+      "hint": "7·5= **35**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "7 · 6 = ",
+      "questionAnswer": "7 · 6 = 42",
+      "variants": ["42", "36", "48", "49"],
+      "correctIndex": 0,
+      "hint": "7·6= **42**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "7 · 7 = ",
+      "questionAnswer": "7 · 7 = 49",
+      "variants": ["49", "42", "56", "48"],
+      "correctIndex": 0,
+      "hint": "7·7= **49**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "7 · 8 = ",
+      "questionAnswer": "7 · 8 = 56",
+      "variants": ["56", "49", "63", "64"],
+      "correctIndex": 0,
+      "hint": "7·8= **56**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "7 · 9 = ",
+      "questionAnswer": "7 · 9 = 63",
+      "variants": ["63", "56", "70", "72"],
+      "correctIndex": 0,
+      "hint": "7·9= **63**."
+    }
+  ]
+}
