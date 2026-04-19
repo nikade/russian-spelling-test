@@ -1,0 +1,150 @@
+{
+  "title": "Таблица деления на 6, 7",
+  "description": "Таблица деления для чисел 6, 7",
+  "tasks": [
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "6 : 6 = ",
+      "questionAnswer": "6 : 6 = 1",
+      "variants": ["1", "0", "6", "12"],
+      "correctIndex": 0,
+      "hint": "6:6= **1**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "12 : 6 = ",
+      "questionAnswer": "12 : 6 = 2",
+      "variants": ["2", "1", "3", "18"],
+      "correctIndex": 0,
+      "hint": "12:6= **2**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "18 : 6 = ",
+      "questionAnswer": "18 : 6 = 3",
+      "variants": ["3", "2", "4", "24"],
+      "correctIndex": 0,
+      "hint": "18:6= **3**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "24 : 6 = ",
+      "questionAnswer": "24 : 6 = 4",
+      "variants": ["4", "3", "5", "30"],
+      "correctIndex": 0,
+      "hint": "24:6= **4**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "30 : 6 = ",
+      "questionAnswer": "30 : 6 = 5",
+      "variants": ["5", "4", "6", "36"],
+      "correctIndex": 0,
+      "hint": "30:6= **5**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "36 : 6 = ",
+      "questionAnswer": "36 : 6 = 6",
+      "variants": ["6", "5", "7", "42"],
+      "correctIndex": 0,
+      "hint": "36:6= **6**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "42 : 6 = ",
+      "questionAnswer": "42 : 6 = 7",
+      "variants": ["7", "6", "8", "48"],
+      "correctIndex": 0,
+      "hint": "42:6= **7**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "48 : 6 = ",
+      "questionAnswer": "48 : 6 = 8",
+      "variants": ["8", "7", "9", "54"],
+      "correctIndex": 0,
+      "hint": "48:6= **8**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "54 : 6 = ",
+      "questionAnswer": "54 : 6 = 9",
+      "variants": ["9", "8", "10", "60"],
+      "correctIndex": 0,
+      "hint": "54:6= **9**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "7 : 7 = ",
+      "questionAnswer": "7 : 7 = 1",
+      "variants": ["1", "0", "7", "14"],
+      "correctIndex": 0,
+      "hint": "7:7= **1**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "14 : 7 = ",
+      "questionAnswer": "14 : 7 = 2",
+      "variants": ["2", "1", "3", "21"],
+      "correctIndex": 0,
+      "hint": "14:7= **2**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "21 : 7 = ",
+      "questionAnswer": "21 : 7 = 3",
+      "variants": ["3", "2", "4", "28"],
+      "correctIndex": 0,
+      "hint": "21:7= **3**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "28 : 7 = ",
+      "questionAnswer": "28 : 7 = 4",
+      "variants": ["4", "3", "5", "35"],
+      "correctIndex": 0,
+      "hint": "28:7= **4**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "35 : 7 = ",
+      "questionAnswer": "35 : 7 = 5",
+      "variants": ["5", "4", "6", "42"],
+      "correctIndex": 0,
+      "hint": "35:7= **5**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "42 : 7 = ",
+      "questionAnswer": "42 : 7 = 6",
+      "variants": ["6", "5", "7", "49"],
+      "correctIndex": 0,
+      "hint": "42:7= **6**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "49 : 7 = ",
+      "questionAnswer": "49 : 7 = 7",
+      "variants": ["7", "6", "8", "56"],
+      "correctIndex": 0,
+      "hint": "49:7= **7**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "56 : 7 = ",
+      "questionAnswer": "56 : 7 = 8",
+      "variants": ["8", "7", "9", "63"],
+      "correctIndex": 0,
+      "hint": "56:7= **8**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "63 : 7 = ",
+      "questionAnswer": "63 : 7 = 9",
+      "variants": ["9", "8", "10", "70"],
+      "correctIndex": 0,
+      "hint": "63:7= **9**."
+    }
+  ]
+}

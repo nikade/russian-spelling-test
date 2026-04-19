@@ -1,0 +1,294 @@
+{
+  "title": "Таблица деления на 2, 3, 4, 5",
+  "description": "Таблица деления для чисел 2, 3, 4, 5",
+  "tasks": [
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "2 : 2 = ",
+      "questionAnswer": "2 : 2 = 1",
+      "variants": ["1", "2", "0", "4"],
+      "correctIndex": 0,
+      "hint": "2:2= **1**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "4 : 2 = ",
+      "questionAnswer": "4 : 2 = 2",
+      "variants": ["2", "1", "3", "8"],
+      "correctIndex": 0,
+      "hint": "4:2= **2**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "6 : 2 = ",
+      "questionAnswer": "6 : 2 = 3",
+      "variants": ["3", "2", "4", "12"],
+      "correctIndex": 0,
+      "hint": "6:2= **3**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "8 : 2 = ",
+      "questionAnswer": "8 : 2 = 4",
+      "variants": ["4", "3", "5", "16"],
+      "correctIndex": 0,
+      "hint": "8:2= **4**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "10 : 2 = ",
+      "questionAnswer": "10 : 2 = 5",
+      "variants": ["5", "4", "6", "20"],
+      "correctIndex": 0,
+      "hint": "10:2= **5**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "12 : 2 = ",
+      "questionAnswer": "12 : 2 = 6",
+      "variants": ["6", "5", "7", "14"],
+      "correctIndex": 0,
+      "hint": "12:2= **6**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "14 : 2 = ",
+      "questionAnswer": "14 : 2 = 7",
+      "variants": ["7", "6", "8", "12"],
+      "correctIndex": 0,
+      "hint": "14:2= **7**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "16 : 2 = ",
+      "questionAnswer": "16 : 2 = 8",
+      "variants": ["8", "7", "9", "14"],
+      "correctIndex": 0,
+      "hint": "16:2= **8**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "18 : 2 = ",
+      "questionAnswer": "18 : 2 = 9",
+      "variants": ["9", "8", "10", "16"],
+      "correctIndex": 0,
+      "hint": "18:2= **9**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "3 : 3 = ",
+      "questionAnswer": "3 : 3 = 1",
+      "variants": ["1", "0", "3", "9"],
+      "correctIndex": 0,
+      "hint": "3:3= **1**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "6 : 3 = ",
+      "questionAnswer": "6 : 3 = 2",
+      "variants": ["2", "1", "3", "9"],
+      "correctIndex": 0,
+      "hint": "6:3= **2**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "9 : 3 = ",
+      "questionAnswer": "9 : 3 = 3",
+      "variants": ["3", "2", "4", "12"],
+      "correctIndex": 0,
+      "hint": "9:3= **3**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "12 : 3 = ",
+      "questionAnswer": "12 : 3 = 4",
+      "variants": ["4", "3", "5", "15"],
+      "correctIndex": 0,
+      "hint": "12:3= **4**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "15 : 3 = ",
+      "questionAnswer": "15 : 3 = 5",
+      "variants": ["5", "4", "6", "12"],
+      "correctIndex": 0,
+      "hint": "15:3= **5**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "18 : 3 = ",
+      "questionAnswer": "18 : 3 = 6",
+      "variants": ["6", "5", "7", "15"],
+      "correctIndex": 0,
+      "hint": "18:3= **6**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "21 : 3 = ",
+      "questionAnswer": "21 : 3 = 7",
+      "variants": ["7", "6", "8", "18"],
+      "correctIndex": 0,
+      "hint": "21:3= **7**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "24 : 3 = ",
+      "questionAnswer": "24 : 3 = 8",
+      "variants": ["8", "7", "9", "21"],
+      "correctIndex": 0,
+      "hint": "24:3= **8**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "27 : 3 = ",
+      "questionAnswer": "27 : 3 = 9",
+      "variants": ["9", "8", "10", "24"],
+      "correctIndex": 0,
+      "hint": "27:3= **9**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "4 : 4 = ",
+      "questionAnswer": "4 : 4 = 1",
+      "variants": ["1", "0", "4", "8"],
+      "correctIndex": 0,
+      "hint": "4:4= **1**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "8 : 4 = ",
+      "questionAnswer": "8 : 4 = 2",
+      "variants": ["2", "1", "3", "12"],
+      "correctIndex": 0,
+      "hint": "8:4= **2**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "12 : 4 = ",
+      "questionAnswer": "12 : 4 = 3",
+      "variants": ["3", "2", "4", "16"],
+      "correctIndex": 0,
+      "hint": "12:4= **3**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "16 : 4 = ",
+      "questionAnswer": "16 : 4 = 4",
+      "variants": ["4", "3", "5", "20"],
+      "correctIndex": 0,
+      "hint": "16:4= **4**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "20 : 4 = ",
+      "questionAnswer": "20 : 4 = 5",
+      "variants": ["5", "4", "6", "24"],
+      "correctIndex": 0,
+      "hint": "20:4= **5**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "24 : 4 = ",
+      "questionAnswer": "24 : 4 = 6",
+      "variants": ["6", "5", "7", "28"],
+      "correctIndex": 0,
+      "hint": "24:4= **6**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "28 : 4 = ",
+      "questionAnswer": "28 : 4 = 7",
+      "variants": ["7", "6", "8", "32"],
+      "correctIndex": 0,
+      "hint": "28:4= **7**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "32 : 4 = ",
+      "questionAnswer": "32 : 4 = 8",
+      "variants": ["8", "7", "9", "36"],
+      "correctIndex": 0,
+      "hint": "32:4= **8**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "36 : 4 = ",
+      "questionAnswer": "36 : 4 = 9",
+      "variants": ["9", "8", "10", "32"],
+      "correctIndex": 0,
+      "hint": "36:4= **9**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "5 : 5 = ",
+      "questionAnswer": "5 : 5 = 1",
+      "variants": ["1", "0", "5", "10"],
+      "correctIndex": 0,
+      "hint": "5:5= **1**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "10 : 5 = ",
+      "questionAnswer": "10 : 5 = 2",
+      "variants": ["2", "1", "3", "15"],
+      "correctIndex": 0,
+      "hint": "10:5= **2**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "15 : 5 = ",
+      "questionAnswer": "15 : 5 = 3",
+      "variants": ["3", "2", "4", "20"],
+      "correctIndex": 0,
+      "hint": "15:5= **3**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "20 : 5 = ",
+      "questionAnswer": "20 : 5 = 4",
+      "variants": ["4", "3", "5", "25"],
+      "correctIndex": 0,
+      "hint": "20:5= **4**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "25 : 5 = ",
+      "questionAnswer": "25 : 5 = 5",
+      "variants": ["5", "4", "6", "30"],
+      "correctIndex": 0,
+      "hint": "25:5= **5**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "30 : 5 = ",
+      "questionAnswer": "30 : 5 = 6",
+      "variants": ["6", "5", "7", "35"],
+      "correctIndex": 0,
+      "hint": "30:5= **6**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "35 : 5 = ",
+      "questionAnswer": "35 : 5 = 7",
+      "variants": ["7", "6", "8", "40"],
+      "correctIndex": 0,
+      "hint": "35:5= **7**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "40 : 5 = ",
+      "questionAnswer": "40 : 5 = 8",
+      "variants": ["8", "7", "9", "45"],
+      "correctIndex": 0,
+      "hint": "40:5= **8**."
+    },
+    {
+      "type": "chooseWordVariant",
+      "questionDisplay": "45 : 5 = ",
+      "questionAnswer": "45 : 5 = 9",
+      "variants": ["9", "8", "10", "50"],
+      "correctIndex": 0,
+      "hint": "45:5= **9**."
+    }
+  ]
+}
